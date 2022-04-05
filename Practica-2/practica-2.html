@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica-2</title>
+</head>
+<body>
+    <h1>Ejercicios de Lógica de Programación 2</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+
+    <script>
+        /*
+        
+            5) Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".
+            6) Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2.
+            7) Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true.
+            8) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
+
+        */
+    //Ejercicio_5_solución_1
+        invertirCadena = (cadena = "") =>{
+            if (!cadena) {
+                return console.warn("No ingreso ninguna cadena de texto");    
+            }
+            if (typeof(cadena) != 'string') {
+                return console.error(`El valor ${cadena} no es de tipo string`);
+            }
+            const arreglo = cadena.split('');
+            return console.log(arreglo.reverse());
+        }
+        invertirCadena("hola");
+        invertirCadena("hola mundo");
+        invertirCadena("");
+        invertirCadena(2);
+        invertirCadena("2");
+    //Ejercicio_5_solución_2
+
+
+
+
+    //Ejercicio_6_solución_1
+    const contarPalabras = (texto = "", palabra = "") => {
+        if (!texto && !palabra) {
+            return console.warn(`No se colocó ni el texto ni la palabra`);
+        }
+
+        if (!texto || !palabra) {
+            return console.warn(`No se colocó el texto o no se colocó la palabra`);
+        }
+
+        if (typeof(texto) != 'string' && typeof(texto) != 'palabra') {
+            return console.warn(`El texto ${texto} y la palabra ${palabra} no son de tipo string`);
+        }
+
+        if (typeof(texto) != 'string' || typeof(texto) != 'palabra') {
+            return console.warn(`El texto ${texto} o la palabra ${palabra} no son de tipo string`);
+        }
+    }
+    //Ejercicio_6_solución_2
+    
+    
+    
+    //Ejercicio_7_solución_1
+    
+    const palindromo = (palabra = "") =>{
+        if (!palabra) {
+            return console.warn(`No se coloco una palabra`);
+        }
+
+        if (typeof(palabra) != 'string') {
+            return console.warn(`La palabra ${palabra} no es de tipo string`);
+        }
+
+        let arreglo = palabra.split('');
+        let pal = "";
+        let i = 0;
+        while (i < 3) {
+            arreglo = arreglo.reverse().toString().replace(',' , '');
+            i++;
+            console.log(arreglo);
+        }
+    }
+
+    palindromo("salas");
+    
+    //Ejercicio_2_solución_2
+
+        
+    </script>
+</body>
+</html>

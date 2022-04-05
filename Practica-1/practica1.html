@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica 1</title>
+</head>
+<body>
+    <h1>Ejercicios de Lógica de Programación 1</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        /*
+        1) Programa una función que cuente el número de caracteres de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá 10.
+        2) Programa una función que te devuelva el texto recortado según el número de caracteres indicados, pe. miFuncion("Hola Mundo", 4) devolverá "Hola".
+        3) Programa una función que dada una String te devuelva un Array de textos separados por cierto caracter, pe. miFuncion('hola que tal', ' ') devolverá ['hola', 'que', 'tal'].
+        4) Programa una función que repita un texto X veces, pe. miFuncion('Hola Mundo', 3) devolverá Hola Mundo Hola Mundo Hola Mundo.
+        */
+    //Ejercicio_1_solución_1 
+       const contarCaracteres = (cadena) =>{
+           if (typeof(cadena) == 'string') {
+               console.log(`La cadena ${cadena} tiene: ${cadena.length} caracteres`);
+           } else {
+               console.log(`El valor ${cadena} no es de tipo cadena`);
+           }
+       }
+       contarCaracteres("Hola mundo");
+       contarCaracteres(12);
+       contarCaracteres(true);
+       const objeto = {
+           nombre : "Raziel",
+           edad : 23
+       }
+       contarCaracteres(objeto.nombre);
+       contarCaracteres(objeto.edad);
+       
+    // Ejercicio_1_solución_2
+    // function countCharacters(string = "") {
+    //     if (!string) {
+    //         console.warn("No se ingresó ninguna cadena");
+    //     }else{
+    //         console.info(`La cadena ${string} tiene ${string.length} caracteres`);
+    //     }
+    // }
+    const countCharacters = (string = "") =>
+        (!string)
+        ?console.warn("No se ingresó ninguna cadena")
+        :console.info(`La cadena ${string} tiene ${string.length} caracteres`);
+    countCharacters();
+    countCharacters("Hola mundo");
+
+
+
+    // Ejercicio_2_solución_1
+       const cadenaRecortada = (cadena, indice) =>{
+           if (typeof(cadena) == 'string' && typeof(indice) == 'number') {
+               console.log(`La cadena: ${cadena} recortada en el indice: ${indice} es :`, cadena.substring(0,indice));
+           } else {
+            console.log(`El valor ${cadena} no es de tipo cadena o el indice ${indice} no es de tipo number`);   
+           }
+       }
+       cadenaRecortada("Hola mundo", 4);
+       cadenaRecortada(false, 4);
+       cadenaRecortada("Hola", "3");
+       cadenaRecortada("Hola mundo", 7);
+    
+       // Ejercicio_2_solución_2
+        const recortarTexto = (cadena = "", longitud = undefined) =>{
+            (!cadena)
+            ?console.warn("No ingresaste la cadena")
+            :(longitud === undefined)
+                ?console.warn("No ingresaste la longitud")
+                :console.info(cadena.slice(0,longitud));
+        }
+
+        recortarTexto();
+        recortarTexto("Hola mundo", 4);
+        recortarTexto("Hola mundo");
+        recortarTexto("", 4);
+
+
+    // Ejercicio_3_solución_1
+       const cadenaSeparada = (cadena, separador) =>{
+           if (typeof(cadena) == 'string') {
+               console.log(cadena.split(separador));
+           } else {
+            console.log(`El valor ${cadena} no es de tipo cadena`);
+           }
+       }
+       cadenaSeparada("Hola que tal", " ");
+       cadenaSeparada("Hola mundo", " ");
+       cadenaSeparada("Hola mundo", 3);
+       cadenaSeparada("Hola que tal", "a");
+       cadenaSeparada(23, " ");
+
+    // Ejercicio_3_solución_2
+
+    const cadenaAArreglo = (cadena = "", separador = undefined) =>{
+        (!cadena)
+            ?console.warn("No ingresaste la cadena")
+            :(separador === undefined)
+                ?console.warn("No ingresaste el separador")
+                :console.info(cadena.split(separador));
+    }
+    cadenaAArreglo("Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis expedita architecto cum. Aperiam dolorem cupiditate officiis commodi deleniti vel ipsa numquam quis iusto labore. Commodi sint dolores beatae aperiam perferendis.", " ");
+    cadenaAArreglo("Enero,Febrero,Marzo.Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre", ",");
+    cadenaAArreglo();
+    cadenaAArreglo("hola mundo");
+
+
+
+    // Ejercicio_4_solución_1
+        const repetirPalabra = (cadena, repetidor) =>{
+            if (typeof(cadena) == 'string' && typeof(repetidor) == 'number') {
+                const arreglo=[];
+                for (let i = 0; i < repetidor; i++) {
+                    arreglo[i] = cadena;
+                }
+                console.log(arreglo);
+               } else {
+                console.log(`El valor ${cadena} no es de tipo cadena o el repetidor ${repetidor} no es de tipo number`);
+               }
+        }
+        repetirPalabra("hola mundo", 3);
+        repetirPalabra("hola mundo", "1");
+        repetirPalabra(8, 5);
+
+    // Ejercicio_4_solución_2
+
+    const repetidor = (texto = "", veces = undefined) => {
+        if (!texto) {
+            return console.warn("No se ingreso un texto");
+        }
+
+        if (veces === undefined) {
+            return console.warn("No se ingreso las veces a repetir");
+        }
+
+        if (veces === 0) {
+            return console.error("El número de veces no puede ser 0");
+        }
+
+        if (Math.sign(veces) === -1) {
+            return console.error("El número de veces no puede ser negativo");
+        }
+        for (let i = 0; i < veces; i++) {
+            return console.info(`${texto} , ${i}`);
+        }
+    }
+
+    repetidor("Hola mundo", 3);
+    repetidor("Hola mundo", 0);
+    repetidor("Hola mundo", -20);
+    repetidor("", 3);
+    repetidor("Hola mundo");
+
+    // Ejercicio_4_solución_3
+    const repeatString = (texto = "", veces = undefined) =>{
+        if (!texto) {
+            return console.warn("No se ingreso un texto");
+        }
+
+        if (veces === undefined) {
+            return console.warn("No se ingreso las veces a repetir");
+        }
+
+        if (veces === 0) {
+            return console.error("El número de veces no puede ser 0");
+        }
+
+        if (Math.sign(veces) === -1) {
+            return console.error("El número de veces no puede ser negativo");
+        }
+        
+        return console.info(texto.repeat(veces));
+    }
+    repeatString("Hola mundo", 3);
+    repeatString("Hola mundo", 0);
+    repeatString("Hola mundo", -20);
+    repeatString("", 3);
+    repeatString("Hola mundo");
+    </script>
+</body>
+</html>

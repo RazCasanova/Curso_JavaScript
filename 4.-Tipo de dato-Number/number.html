@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipo de dato Number en JavaScript</title>
+</head>
+<body>
+    <h1>Tipo de dato Number en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        let a = 2;
+        let b = new Number(1);
+        console.log(a,b);
+        document.write("Numero a = " , a);
+        document.write("<br>Numero b= ", b);
+        
+        let c = 7.19;
+        
+        document.write("<br>Numero c= ", c);
+        console.log(c.toFixed(1));
+        document.write("<br> Variable c con el metodo toFixed de 1 = ",c.toFixed(1));
+        console.log(c.toFixed(5));
+        document.write("<br> Variable c con el metodo toFixed de 5 = ",c.toFixed(5));
+        console.log(parseInt(c));
+        document.write("<br> Variable c con el metodo parseInt = ",parseInt(c));
+        console.log(parseFloat(c));
+        document.write("<br> Variable c con el metodo parseFloat = ",parseFloat(c));
+
+        let d = "5.6";
+        document.write("<br>Variable d = ", d);
+        console.log(typeof c, typeof d);
+        document.write("<br>typeof variable c y d = ", typeof c, " ",typeof d);
+        console.log(a+b);
+        document.write("<br>Suma de a+b = ", a+b);
+        console.log(c+d);
+        document.write("<br> Suma de c+d sin conversion = ",c+d);
+        console.log(c+ parseFloat(d));
+        document.write("<br> Suma de c+d con conversion = ",c+ parseFloat(d));
+    </script>
+</body>
+</html>

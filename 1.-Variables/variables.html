@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variables en JavaScript</title>
+</head>
+<body>
+    <h1>Variables</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        var hola = "Hola mundo";
+        let hello = "Hello world";
+        console.log(hola);
+        console.log(hello);
+        console.log(window);
+        console.log(window.hola);
+        console.log(window.hello);
+
+        //Ambito de bloques
+        console.log("******************var*******************");
+        document.write("******************var*******************<br>");
+
+        var musica = "Rock";
+        console.log("Variable música antes del bloque", musica);
+        document.write("Variable música antes del bloque", musica,"<br>");
+        //Esto es un bloque 
+
+        {
+            var musica = "Pop";
+            console.log("Variable música dentro del bloque", musica);
+            document.write("Variable música dentro del bloque", musica);
+        }
+        
+        console.log("Variable música depués del bloque", musica);
+        document.write("<br>Variable música depués del bloque", musica);
+
+        console.log("******************let*******************");
+        document.write("<br><br>******************let*******************");
+
+        let musica2 = "Rock";
+        console.log("Variable música antes del bloque", musica2);
+        document.write("<br>Variable música antes del bloque", musica2);
+        //Esto es un bloque 
+
+        {
+            let musica2 = "Pop";
+            console.log("Variable música dentro del bloque", musica);
+            document.write("<br>Variable música dentro del bloque", musica);
+        }
+
+        console.log("Variable música depués del bloque", musica2);
+        document.write("<br>Variable música depués del bloque", musica2);
+
+    </script>
+</body>
+</html>

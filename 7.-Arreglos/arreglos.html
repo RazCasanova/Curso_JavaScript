@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arreglos en JavaScript</title>
+</head>
+<body>
+    <h1>Arreglos en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        const a = [];
+        const b = [1,true,"Hola",["a","b"]];
+        console.log(a);
+        document.write("<br>Arreglo a = ", a);
+        console.log(b);
+        document.write("<br>Arreglo b = ", b);
+        console.log(b.length);
+        document.write("<br>Tamaño del arreglo b = ", b.length);
+        console.log(b[2]);
+        document.write("<br>Posición 2 del arreglo b  = ", b[2]);
+        console.log(b[3][1]);
+        document.write("<br>Posición 3,1 del arreglo b = ", b[3][1]);
+
+        const c = Array.of("x","y","z","9",8,7);
+        console.log(c);
+        document.write("<br> Arreglo c = ", c);
+
+        const d = Array(100).fill(false);
+        console.log(d);
+        document.write("<br>Arreglo d = ", d);
+
+        const e = new Array(1,2,3,4,true,false);
+        console.log(e);
+        document.write("<br>Arreglo e = ", e);
+
+        const colores = ["rojo","verde","azul"];
+        console.log(colores);
+        document.write("<br>Arreglo colores = ", colores);
+        colores.push("negro");
+        console.log(colores);
+        document.write("<br>Arreglo colores = ", colores);
+        colores.pop();
+        console.log(colores);
+        document.write("<br>Arreglo colores = ", colores);
+
+        colores.forEach(function (el, index) {
+            console.log(`<li id=${index}>${el}</li>`);
+            document.write("<br>Arreglo colores = ", `<li id=${index}>${el}</li>`);
+        });
+
+    </script>
+</body>
+</html>

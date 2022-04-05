@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objeto date en JavaScript</title>
+</head>
+<body>
+    <h1>Objeto date en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+
+    <script>
+        console.log(Date());
+
+        let fecha = new Date();
+
+        //Día del mes
+        console.log(fecha.getDate());
+
+        // Día de la semana
+        /*
+        Domingo - 0
+        Lunes - 1
+        Martes - 2
+        Miércoles - 3
+        Jueves - 4
+        Viernes - 5
+        Sábado - 6
+        */
+        console.log("Día: ",fecha.getDay());
+
+        // Mes
+        /*
+        Diciembre - 0
+        Enero - 1 
+        */
+        console.log("Mes: ", fecha.getMonth());
+
+    // Año
+    // console.log(fecha.getYear());
+    console.log("Año:", fecha.getFullYear());
+
+    // Hora
+    console.log("Horas: ",fecha.getHours());
+    console.log("Minutos: ",fecha.getMinutes());
+    console.log("Segundos: ",fecha.getSeconds());
+    console.log("Milisegundos: ",fecha.getMilliseconds());
+
+    console.log(fecha.toString());
+    console.log(fecha.toDateString());
+    console.log(fecha.toLocaleString());
+    console.log(fecha.toLocaleDateString());
+    console.log(fecha.toLocaleTimeString());
+
+    console.log(fecha.getTimezoneOffset());
+
+    console.log(fecha.getUTCDate());
+    console.log(fecha.getUTCHours());
+
+    console.log("Fecha timestamp: ",Date.now());
+
+    const cumpleanios = new Date(1998,10,15);
+    console.log(cumpleanios);
+    </script>
+</body>
+</html>

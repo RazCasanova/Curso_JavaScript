@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alertas</title>
+</head>
+<body>
+    <h1>Alertas</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        // No es necesario colocar window
+        console.log(window);
+        // window.alert("Esto es una alerta");
+        // window.confirm("Confirmación");
+        // window.prompt("prompt : Le permite ingresar un valor al usuario");
+
+        let alerta = alert("Esto es una alerta");
+        let confirmacion = confirm("Confirmación");
+        let aviso = prompt("prompt : Le permite ingresar un valor al usuario");
+
+        //El valor de alert siempre será undefined
+        console.log(alerta);
+        //El valor de confirm será o true o false
+        console.log(confirmacion);
+        // El valor de prompt será el valor ingresado y aceptado o nulo
+        console.log(aviso);
+    </script>
+</body>
+</html>

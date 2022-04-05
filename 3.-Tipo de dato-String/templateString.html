@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Strings en JavaScript</title>
+</head>
+<body>
+    <h1>Template Strings en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        let nombre = "raz";
+        let apellido = "cas";
+        document.write("Variable nombre: "+ nombre);
+        document.write("<br>Variable apellido: "+ apellido);
+
+        //Concatenación
+        let saludo = "Hola mi nombre es " + nombre + " " + apellido + ".";
+        console.log(saludo);
+
+        document.write("<br>Concatenación : " + saludo);
+
+        //Interpolación
+        let saludo2 = `Hola mi nombre es ${nombre} ${apellido}.`;
+        console.log(saludo2);
+        document.write("<br>Interpolación : " + saludo2);
+
+        let ul = "<ul><li>Primavera</li><li>Verano</li><li>Otoño</li><li>Invierno</li></ul>";
+        console.log(ul);
+
+        let ul2 = `
+        <ul>
+            <li>Primavera</li>
+            <li>Verano</li>
+            <li>Otoño</li>
+            <li>Invierno</li>
+        </ul>
+    `;
+
+    console.log(ul2);
+
+
+    </script>
+</body>
+</html>

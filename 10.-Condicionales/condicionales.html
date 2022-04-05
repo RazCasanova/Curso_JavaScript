@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condicionales en JavaScript</title>
+</head>
+<body>
+    <h1>Condicionales en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        let edad = 17;
+
+        if (edad > 17 ) {
+            console.log("Eres mayor de edad");
+            document.write("<br>Eres mayor de edad");
+        } else {
+            console.log("Eres menor de edad");
+            document.write("<br>Eres menor de edad");
+        }
+
+        if (edad >= 18) {
+            console.log("Eres mayor de edad");
+            document.write("<br>Eres mayor de edad");
+        } else {
+            console.log("Eres menor de edad");
+            document.write("<br>Eres menor de edad");
+        }
+
+        if (edad < 18 ) {
+            console.log("Eres mayor de edad");
+            document.write("<br>Eres mayor de edad");
+        } else {
+            console.log("Eres menor de edad");
+            document.write("<br>Eres menor de edad");
+        }
+
+        if (edad <= 17 ) {
+            console.log("Eres mayor de edad");
+            document.write("<br>Eres mayor de edad");
+        } else {
+            console.log("Eres menor de edad");
+            document.write("<br>Eres menor de edad");
+        }
+
+        let hora = 5;
+        if (hora >= 0 && hora <=5) {
+            console.log("Dejame dormir");
+            document.write("<br>Dejame dormir");
+        }else if (hora >= 6 && hora <= 11) {
+            console.log("Buenos días");
+            document.write("<br>Buenos días");
+        } else if (hora >= 12 && hora <= 18) {
+            console.log("Buenas tardes");
+            document.write("<br>Buenas tardes");
+        } else {
+            console.log("Buenas noches");
+            document.write("<br>Buenas noches");
+        }
+
+        if (hora <6) {
+            console.log("Dejame dormir");
+            document.write("<br>Dejame dormir");
+        }else if (hora > 5 && hora < 12) {
+            console.log("Buenos días");
+            document.write("<br>Buenos días");
+        } else if (hora > 11 && hora < 19) {
+            console.log("Buenas tardes");
+            document.write("<br>Buenas tardes");
+        } else {
+            console.log("Buenas noches");
+            document.write("<br>Buenas noches");
+        }
+
+        /*Operador ternario*/
+        /*(condicion)?verdadero:falso*/
+        let eresMayor = (edad>=18)
+            ?"Eres mayor de edad"
+            :"Eres menor de edad";
+        console.log(eresMayor);
+        document.write("br",eresMayor);
+
+        /*switch - case*/
+        /*
+            Domingo - 0
+            Lunes - 1
+            Martes - 2
+            Miercoles - 3
+            Jueves - 4
+            Viernes - 5
+            Sabado - 6
+        */
+
+        let dia = 2;
+
+        switch (dia) {
+            case 0:
+                console.log("Domingo");
+                document.write("<br>Domingo");
+                break;
+            case 1:
+                console.log("Lunes");
+                document.write("<br>Lunes");
+                break;
+            case 2:
+                console.log("Martes");
+                document.write("<br>Martes");
+                break;
+            case 3:
+                console.log("Miercoles");
+                document.write("<br>Miercoles");
+                break;
+            case 4:
+                console.log("Jueves");
+                document.write("<br>Jueves");
+                break;
+            case 5:
+                console.log("Viernes");
+                document.write("<br>Viernes");
+                break;
+            case 6:
+                console.log("Sabado");
+                document.write("<br>Sabado");
+                break;
+            default:
+                console.log("El día no existe");
+                document.write("<br>El día no existe");
+                break;
+        }
+
+
+    </script>
+</body>
+</html>

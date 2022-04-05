@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Break y continue en JavaScript</title>
+</head>
+<body>
+    <h1>Break y continue en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        // Break rompe la estructura
+        const numeros = [1,2,3,4,5,6,7,8,9,10];
+        for (let i = 0; i < numeros.length; i++) {
+            if (i === 5) {
+                break;
+            }
+            console.log(numeros[i]);
+        }
+        // Continue salta la condición y continua con el ciclo
+        for (let i = 0; i < numeros.length; i++) {
+            if (i === 5) {
+                continue;
+            }
+            console.log(numeros[i]);
+        }
+        console.log("Numeros pares");
+        let pares = [1,2,3,4,5,6,7,8,9,10];
+        for (let i = 0; i < pares.length; i++) {
+            if (i%2==0) {
+                continue;
+            }
+            console.log(pares[i]);
+        }
+        let impares = [1,2,3,4,5,6,7,8,9,10];
+        console.log("Numeros impares");
+        for (let i = 0; i < impares.length; i++) {
+            if (i%2==1) {
+                continue;
+            }
+            console.log(impares[i]);
+        }
+    </script>
+</body>
+</html>

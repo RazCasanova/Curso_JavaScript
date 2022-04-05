@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones en JavaScript</title>
+</head>
+<body>
+    <h1>Funciones en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        /*
+            Una función es un bloque de código, autocontenido, que se puede definir una vez y se puede ejecutar varias veces en cualquier momento.
+
+            Opcionalmente, una función puede aceptar parámetros y devolver valores.
+            
+            Las funciones en JavaScript son objetos, un tipo especial de objetos:
+
+            Se dice que las funciones son ciudadanos de primera clase porque pueden asignarse a un valor, y pueden pasarse como argumentos y usarse como un valor de retorno.
+        */
+       
+        //Función declarada
+        function estoEsUnaFuncion() {
+            console.log("Uno");
+            console.log("Dos");
+            console.log("Tres");
+            document.write("<br>Uno");
+            document.write("<br>Dos");
+            document.write("<br>Tres");
+        }
+        //Invocación de función
+        estoEsUnaFuncion();
+        estoEsUnaFuncion();
+        estoEsUnaFuncion();
+        
+        function unaFuncionQueDevuelveValor(){
+            console.log("Uno");            
+            console.log("Dos");
+            console.log("Tres");
+
+            return "La función ha retornado una cadena de texto"
+        }
+
+        let valorDeFuncion = unaFuncionQueDevuelveValor();
+        console.log(valorDeFuncion);
+        document.write("<br>", valorDeFuncion);
+
+
+        function saludar(nombre = "Desconocido", edad = 0) {
+            console.log(`Hola mi nombre es ${nombre} y tengo ${edad} años`);
+            document.write("<br>", `Hola mi nombre es ${nombre} y tengo ${edad} años`);
+        }
+        saludar("Nico", 3);
+        saludar();
+
+        //Funciones declaradas vs Funciones expresadas
+        funcionDeclarada();
+        function funcionDeclarada() {
+            console.log("Esto es una función declarada, puede invocarse en cualquier parte de nuestro código, incluso antes de que la función sea declarada");
+        }
+        
+        //Función anónima
+        const funcionExpresada = function () {
+            console.log("Esto es una función expresada, es decir, una función que se le ha asignado como valor a una variable , si invocamos esta función antes de su definición, JS nos dira: Cannot access 'funcionExpresada' before initialization");
+        }
+        funcionExpresada();
+    </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipos de operadores en JavaScript</title>
+</head>
+<body>
+    <h1>Tipos de operadores en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        /*
+        Operadores aritmeticos
+            +,-,*,/,%,()
+        */
+        document.write("Operadores aritmeticos");
+        let a = 5+5;
+        let modulo = 5%2;
+        console.log(a);
+        document.write("<br> 5+5 = ", a);
+        console.log(modulo);
+        document.write("<br> 5%2 = ", modulo);
+
+        /*
+        Operadores relacionales
+            <,>,<=,>=,==,===,!=,!==
+        */
+        document.write("<br>Operadores relacionales");
+       console.log(8 > 9);
+       document.write("<br> 8 > 9 = ",8 > 9);
+       console.log(9 > 8);
+       document.write("<br> 9 > 8 = ",9 > 8);
+       console.log(8 >= 9);
+       document.write("<br> 8 >= 9 = ", 8 >= 9);
+       console.log(9 >= 8);
+       document.write("<br> 9 >= 8 = ", 9 >= 8);
+       console.log(7 < 7);
+       document.write("<br> 7 < 7 = ",7 < 7);
+       console.log(7 <= 7);
+       document.write("<br> 7 <= 7 = ",7 <= 7);
+
+        /*
+        = asignación de variable
+        == comparación de valores
+        === comparación de tipo de datos y de valores
+        */
+       console.log(7==7);
+       document.write("<br> 7==7 = ",7==7);
+       console.log("7"==7);
+       document.write("<br> '7'==7 = ","7"==7);
+       console.log(0==false);
+       document.write("<br> 0==false = ",0==false);
+       console.log(7===7);
+       document.write("<br> 7===7 = ",7===7);
+       console.log("7"===7);
+       document.write("<br> '7'===7 = ","7"===7);
+       console.log(0===false);
+       document.write("<br> 0===false = ",0===false);
+
+       /*
+       Operadores de incremento y decremento
+       */
+      document.write("<br>Operadores de incremento y decremento");
+      let i = 1;
+      console.log(i);
+      document.write("<br>i = ",i);
+      i=i+2;
+      console.log(i);
+      document.write("<br>i=i+2 = ",i);
+      i+=3;
+      console.log(i);
+      document.write("<br>i+=3 = ",i);
+      i-=1;
+      console.log(i);
+      document.write("<br>i-=1 = ",i);
+
+      /*Operador unario*/
+      document.write("<br>Operador unario");
+      let y = 1;
+      console.log(y);
+      document.write("<br> y = ",y);
+      y++;
+      console.log(y);
+      document.write("<br> y++ = ",y);
+      y--;
+      console.log(y);
+      document.write("<br> y-- = ",y);
+      ++y;
+      console.log(y);
+      document.write("<br> ++y = ",y);
+      --y;
+      console.log(y);
+      document.write("<br> --y = ",y);
+
+      /*
+      Operadores lógicos
+            ! Not:Niega, es decir lo que es verdadero lo vuelve falso y viceversa
+            || Or:Cuando se tiene dos o más condiciones, con que una se cumpla, es decir sea verdadera, el or será verdadero
+            && And:Cuando se tiene dos o más condiciones, todas deben de cumplirse, es decir, ser verdaderas para que and se valide 
+      */
+     document.write("<br>Operadores lógicos");
+     console.log(!true);
+     document.write("<br> !true = ",!true);
+     console.log(!false);
+     document.write("<br> !false = ",!false);
+     console.log((9===9)||("9"===9));
+     document.write("<br> (9===9)||('9'===9) = ",(9===9)||("9"===9));
+     console.log((9===9)&&("9"===9));
+     document.write("<br> (9===9)&&('9'===9) = ",(9===9)&&("9"===9));
+     console.log((9===9)&&("9"==="9"));
+     document.write("<br> (9===9)&&('9'==='9') = ",(9===9)&&("9"==="9"));
+
+
+    //  Operadores de corto circuito
+    document.write("<br>Operadores de corto circuito")
+    /*
+    Corto circuito OR: cuando el valor de la izquierda en al expresión siempre pueda validar a true, es el avlor que se encargará por defecto
+    */
+
+    function saludar(nombre) {
+        nombre = nombre || "Desconocido";
+        console.log(`Hola ${nombre}`);
+    }
+    saludar("Raziel");
+    saludar();
+    console.log("Cadena"||"Valor de la derecha");
+    console.log(19 ||"Valor de la derecha");
+    console.log(true ||"Valor de la derecha");
+    console.log({} ||"Valor de la derecha");
+    console.log(false ||"Valor de la derecha");
+    console.log(null ||"Valor de la derecha");
+    console.log(undefined ||"Valor de la derecha");
+    console.log(0 ||"Valor de la derecha");
+
+    /*
+    Corto circuito AND: cuando el valor de la izquierda en al expresión siempre pueda validar a false, es el avlor que se encargará por defecto
+    */
+   console.log(false && "Valor de la derecha");
+   console.log(null && "Valor de la derecha");
+    console.log(undefined && "Valor de la derecha");
+    console.log(0 && "Valor de la derecha");
+
+    console.log("Cadena"&& "Valor de la derecha");
+    console.log(19 && "Valor de la derecha");
+    console.log(true && "Valor de la derecha");
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipo de dato String en JavaScript</title>
+</head>
+<body>
+    <h1>Tipo de dato String en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        //Cadenas de texto
+        let nombre = "Raziel";
+        let apellido = 'Casanova';
+        let saludo = new String("Hola mundo");
+        let lorem = "   Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium beatae nemo nostrum consequuntur? Nihil, dolores illo! Amet perspiciatis possimus itaque, hic eligendi assumenda ipsum harum minima eum est, reiciendis ut?"
+
+        console.log(nombre, apellido, saludo);
+        document.write("Valores de las variables= ", nombre, apellido, saludo);
+        
+        document.write("<h2>Propiedad length</h2>");
+        document.write("<br> Tamaño de las variables");
+        console.log(nombre.length, apellido.length, saludo.length);
+        document.write("|",nombre.length,"|",apellido.length,"|",saludo.length);
+
+        document.write("<h2>Método UpperCase y LowerCase</h2>");
+        console.log(nombre.toUpperCase());
+        document.write(nombre.toUpperCase());
+        console.log(apellido.toLowerCase());
+        document.write("<br>",apellido.toLowerCase());
+
+        document.write("<h2>Método includes</h2>");
+        console.log(lorem.includes("amet"));;
+        document.write("amet = ",lorem.includes("amet"));;
+        console.log(lorem.includes("raz"));;
+        document.write("<br> raz = ",lorem.includes("raz"));
+
+        document.write("<h2>Método trim</h2>");
+        console.log(lorem);
+        document.write(lorem);
+        console.log(lorem.trim());
+        document.write("<br><br>",lorem.trim());
+
+        document.write("<h2>Método split</h2>");
+        console.log(lorem.split(" "));
+        document.write(lorem.split(" "));
+        console.log(lorem.split(","));
+        document.write("<br><br>",lorem.split(","));
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de errores en JavaScritp</title>
+</head>
+<body>
+    <h1>Manejo de errores en JavaScritp</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        try {
+            console.log("En el try se agrega el código a evaluar");
+            noExiste;
+            console.log("Segundo mensaje del try");
+            document.write("<br>En el try se agrega el código a evaluar");
+            noExiste;
+            document.write("<br>Segundo mensaje del try");
+        } catch (error) {
+            console.log("catch captura cualquier error surgido o lanzado en el try");
+            console.log(error);
+            document.write("<br>catch captura cualquier error surgido o lanzado en el try");
+            document.write("<br>",error);
+        }finally{
+            console.log("El bloque finally se ejcutará siempre al final de un bloque try-catch");
+            document.write("<br>El bloque finally se ejcutará siempre al final de un bloque try-catch");
+
+        }
+
+        try {
+            let numero = "y";
+            if (isNaN(numero)) {
+                throw new Error("El caractér introducido no es un número");
+            } else {
+                console.log(numero*numero);
+            }
+        } catch (error) {
+            console.log(`Se produjo el siguiente error: ${error}`);
+        }
+    </script>
+</body>
+</html>

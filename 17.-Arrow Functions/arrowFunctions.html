@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Functions en JavaScript</title>
+</head>
+<body>
+    <h1>Arrow Functions en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        /*
+        Nueva forma de definir funciones anónimas expresadas
+        */
+
+       /*
+       Cuando una arrowFunction no recibe parametros, o recibe dos o mar parametros es necesario colocar ()
+       */
+        const saludo = () => console.log("Hola");
+        saludo();
+
+        /*
+        Cuando una arrowFunction recibe un parametro NO es necesario colocar ()
+        */
+
+        const saludar = nombre => console.log(`Hola ${nombre}`);;
+        saludar("Raz");
+
+        const sumar = function (a,b) {
+            return a+b;
+        }
+
+        console.log(sumar(9,9));
+
+        /* retorno implícito */
+        const suma = (a,b) => a+b;
+        console.log(suma(7,7));
+
+        /*
+        Cuando las arrowFuntion´s poseen varias líneas de código es necesario colocar {}
+        */
+        const funcionDeVariasLineas = () => {
+            console.log("Uno");
+            console.log("Dos");
+            console.log("Tres");
+        }
+
+        funcionDeVariasLineas();
+
+        const numeros = [1,2,3,4,5];
+        /*
+        numeros.forEach(function(el,index) {
+            console.log(`${el} esta en la posición ${index}`);
+        });
+        */
+        
+        numeros.forEach((el,index) => {
+            console.log(`${el} esta en la posición ${index}`);
+        });
+
+        /*
+        Las arrowFuntion´s capturan el contexto global, es decir, window
+        */
+
+        function Perro() {
+            console.log(this);
+        }
+        Perro();
+    
+
+        const dog = {
+            nombre : "Nico",
+            ladrar: () => {
+                console.log(this);
+            },
+            m : function() {
+                console.log(this);  
+            }
+        }
+
+        dog.ladrar();
+        dog.m();
+
+
+    </script>
+</body>
+</html>

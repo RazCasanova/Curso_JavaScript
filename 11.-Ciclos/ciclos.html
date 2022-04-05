@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciclos en JavaScript</title>
+</head>
+<body>
+    <h1>Ciclos en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        /*While*/
+        let contador = 0;
+        while (contador < 10) {
+            console.log(contador);
+            contador++;
+        }
+
+        /*Do while*/
+        do {
+            console.log(contador);
+            contador++;
+        } while (contador < 10);
+
+        /*for*/
+        for (let i = 0; i < 10; i++) {
+            console.log(i);
+        }
+
+        let numeros = [10,20,30,40,50,60,70,80,90];
+        for (let i = 0; i < numeros.length; i++) {
+            console.log(numeros[i]);
+        }
+
+        const raz = {
+            nombre : "raz",
+            apellido : "cas",
+            edad : 22
+        }
+
+        /*
+        forin : permite recorrer o iterar las propiedades de un objeto
+        La notación del . en forin no funciona, debe ser con la notación de []
+        */
+        for (const propiedad in raz){
+            console.log(propiedad);
+            // console.log(propiedad.nombre);
+            console.log(raz[propiedad]);
+
+        }
+
+        /*
+        forof: permite recorrer o iterar todos los elementos que puedan ser iterables en JavaScript
+        */
+        for (const elemento of numeros) {
+            console.log(elemento);
+        }
+
+        let cadena = "Hola mundo";
+        for (const caracter of cadena) {
+            console.log(caracter);
+        }
+    </script>
+</body>
+</html>

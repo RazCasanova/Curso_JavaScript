@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objetos en JavaScript</title>
+</head>
+<body>
+    <h1>Objetos en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        const b = {}
+        console.log(b);
+
+        const c = new Object();
+        console.log(c);
+
+        /*
+        Dentro de un objeto a las variables se le van a llamar atributos/propiedades y a las funciones se les llama métodos
+        */
+        const raz = {
+            nombre:"Raziel",
+            apellido:"Casanova",
+            edad:22,
+            pasatiempos:["Jugar futbol", "Programar"],
+            soltero:true,
+            contacto:{
+                email:"raz@gmail.com",
+                facebook:"raziel casanova",
+                movil:"55555555"
+            },
+            saludar:function (){
+                console.log("Hola :)");
+            },
+            decirMiNombre:function(){
+                console.log(`Hola me llamo ${this.nombre} ${this.apellido} y tengo ${this.edad} años y me puedes seguir en ${this.contacto.email}`);
+            }
+        }
+
+
+
+        console.log(raz);
+        document.write("<br>Objeto -> = ", raz);
+        console.log(raz["nombre"]);
+        document.write("<br>Objeto[nombre] = ", raz["nombre"]);
+        console.log(raz["apellido"]);
+        document.write("<br>Objeto[apellido] = ", raz["apellido"]);
+        console.log(raz.nombre);
+        document.write("<br>Objeto.nombre = ", raz.nombre);
+        console.log(raz.apellido);
+        document.write("<br>Objeto.apellido = ", raz.apellido);
+        console.log(raz.edad);
+        document.write("<br>Objeto.edad = ", raz.edad);
+        console.log(raz.pasatiempos[1]);
+        document.write("<br>Objeto.pasatiempo[1] = ", raz.pasatiempos[1]);
+        console.log(raz.contacto);
+        document.write("<br>Objeto.contacto = ", raz.contacto);
+        console.log(raz.contacto.email);
+        document.write("<br>Objeto.contacto.email = ", raz.contacto.email);
+        raz.saludar();
+        document.write("<br>Objeto.función() = ", raz.saludar);
+
+        raz.decirMiNombre();
+        document.write("<br>Objeto.función() = ", raz.decirMiNombre);
+
+        console.log(Object.keys(raz));
+        document.write("<br>Object.keys(objeto) = ", Object.keys(raz));
+        console.log(Object.values(raz));
+        document.write("<br>Object.values(objeto) = ",Object.values(raz));
+        console.log(raz.hasOwnProperty("nombre"));
+        document.write("<br>Objeto.hasOwnProperty(nombre) = ",raz.hasOwnProperty("nombre"));
+        console.log(raz.hasOwnProperty("nacimiento"));
+        document.write("<br>Objeto.hasOwnProperty(nacimiento) = ", raz.hasOwnProperty("nacimiento"));
+    </script>
+</body>
+</html>

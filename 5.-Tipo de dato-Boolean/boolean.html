@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipo de dato Boolean en JavaScript</title>
+</head>
+<body>
+    <h1>Tipo de dato Boolean en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        let verdadero = true;
+        let falso = false;
+
+        let v =Boolean(true);
+        let f =Boolean(false);
+
+        console.log(verdadero, falso, v, f);
+        console.log(typeof verdadero, typeof falso);
+        document.write("<br> Valor de verdadero = ", verdadero);
+        document.write("<br> Valor de falso = ", falso);
+        document.write("<br> Valor de v = ", v);
+        document.write("<br> Valor de f = ",f
+        );
+        
+        console.log(Boolean(0));
+        document.write("<br> Boolean(0) = ", Boolean(0)
+        );
+        console.log(Boolean(-7));
+        document.write("<br> Boolean(-7) = ", Boolean(-7)
+        );
+        console.log(Boolean(""));
+        document.write("<br> Boolean('') = ", Boolean("")
+        );
+        console.log(Boolean(" "));
+        document.write("<br> Boolean(' ') = ", Boolean(" ")
+        );
+
+        //Variable indefinida
+        let variableIndefinida;
+        console.log(variableIndefinida);
+        document.write("<br> variableIndefinida = ", variableIndefinida
+        );
+
+        //Variable nulo
+        let nulo = null;
+        console.log(nulo);
+        document.write("<br> nulo = ", nulo
+        );
+
+        //No es un numero
+        let noEsUnNumero = 10 * "hi";
+        console.log(noEsUnNumero);
+        document.write("<br> no es un numero = ", noEsUnNumero
+        );
+    </script>
+</body>
+</html>

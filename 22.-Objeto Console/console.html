@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objeto console en JavaScript</title>
+</head>
+<body>
+    <h1>Objeto console en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <script>
+        console.log(console);
+        console.error("Esto es un error");
+        console.warn("Esto es un aviso");
+        console.info("Esto es un mensaje informativo")
+        console.log("Registro de lo que ha pasado en la aplicación");
+
+        let nombre = "Raziel",
+            apellido = "Casanova",
+            edad = 23;
+        
+        console.log(nombre);
+        console.log(apellido);
+        console.log(edad);
+        console.log(nombre, apellido, edad);
+
+        console.log(`Hola mi nombre es ${nombre} ${apellido} y tengo ${edad} años`);
+
+        console.log(`Hola mi nombre es %s %s y tengo %d años`, nombre, apellido, edad);
+
+        console.clear();
+        
+        console.log(window);
+        console.log(document);
+        console.dir(window);
+        console.dir(document);
+
+        console.clear();
+
+        console.group("Cursos de @jonmircha en YouTube");
+        console.log("Curso de Javascript");
+        console.log("Curso de NodeJS");
+        console.log("Curso de PWA");
+        console.log("Curso de Flexbox");
+        console.log("Curso de Diseño y programación web");
+        console.groupEnd();
+
+        console.table(Object.entries(console).sort());
+
+        const arregloNumeros = [1,2,3,4,5];
+        const arregloVocales = ["a","e","i","o","u"];
+        console.table(arregloNumeros);
+        console.table(arregloVocales);
+
+        const objPerro = {
+            nombre : "Nico",
+            raza : "labrador",
+            color : "cafe"
+        }
+        console.table(objPerro);
+
+        console.clear();
+
+        console.time("Cuanto tiempo tarda mi código");
+        const arr = new Array(1000000);
+        for (let i = 0; i < arr.length; i++) {
+            arr[i] = i;
+        }
+        console.timeEnd("Cuanto tiempo tarda mi código");
+
+        console.clear();
+
+        for (let i = 0; i < 100; i++) {
+            console.count("Código for")
+            console.log(i);
+        }
+
+        console.clear();
+
+        let x = 4,
+            y =2, 
+            pruebaXY = "Se espera que x sea menor que y";
+
+            console.assert(x<y, x,y,pruebaXY);
+    </script>
+</body>
+</html>
