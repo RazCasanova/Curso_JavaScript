@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica 3</title>
+</head>
+<body>
+    <h1>Ejercicios de Lógica de Programación 3</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+    /*
+    9) Programa una función que obtenga un numero aleatorio entre 501 y 600.
+    10) Programa una función que reciba un número y evalúe si es capicúa o no (que se lee igual en un sentido que en otro), pe. miFuncion(2002) devolverá true.
+    11) Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto de todos los números enteros positivos desde 1 hasta n), pe. miFuncion(5) devolverá 120.
+    */
+   
+   
+    const numeroAleatorio = () =>{
+       return console.log(`Número: ${Math.round(Math.random()*(601-501) + 501 )}`);
+   }
+   numeroAleatorio();
+   numeroAleatorio();
+   numeroAleatorio();
+
+   const capicua = (numero = undefined)=>{
+       if (numero == undefined) {
+           return console.warn("No se ingresó ningun numero");
+       }
+
+       if (typeof(numero) != 'number') {
+           return console.warn(`El valor ${numero} no es un numero`);
+       }
+       (numero.toString().split('').reverse().join('') == numero)
+       ? console.info(`El número ${numero} es capicua`)
+       :console.info(`El número ${numero} no es capicua`);
+   }
+
+   capicua();
+   capicua("hola");
+   capicua(2001);
+   capicua(2002);
+   capicua(1331);
+
+   const factorial = (numero = undefined) =>{
+    let aux = 1;
+        if (numero == undefined) {
+           return console.warn("No se ingresó ningun numero");
+        }
+
+        if (typeof(numero) != 'number') {
+           return console.warn(`El valor ${numero} no es un numero`);
+        }
+        if (numero === 0) {
+            return console.info(`El factorial de ${numero} es: 1 `);
+        }
+        if (numero < 0) {
+            for (let i = numero; i < 0; i++) {
+                aux = aux*i;
+            }
+            return console.info(`El factorial de ${numero} es : ${Math.abs(aux)*-1}`);
+        }  
+
+        for (let i = 1; i <= numero; i++) {
+            aux = aux*i
+        }
+        return console.info(`El factorial de ${numero} es : ${aux}`);
+   }
+   factorial();
+   factorial("hola");
+   factorial(0);
+   factorial(5);
+   factorial(-2);
+   factorial(-3);
+   factorial(-4);
+    </script>
+</body>
+</html>
