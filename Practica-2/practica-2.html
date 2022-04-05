@@ -28,16 +28,23 @@
             if (typeof(cadena) != 'string') {
                 return console.error(`El valor ${cadena} no es de tipo string`);
             }
-            const arreglo = cadena.split('');
-            return console.log(arreglo.reverse());
+            return console.log(cadena.split('').reverse().join(''));
         }
         invertirCadena("hola");
         invertirCadena("hola mundo");
         invertirCadena("");
         invertirCadena(2);
         invertirCadena("2");
-    //Ejercicio_5_solución_2
 
+    //Ejercicio_5_solución_2
+        const stringReverse = (string = "") =>{
+            (!string) 
+            ? console.warn("No ingresaste ninguna cadena de texto")
+            :console.info(string.split('').reverse().join(''));;
+        }
+        stringReverse();
+        stringReverse("Hola mundo");
+        stringReverse("JavaScript");
 
 
 
@@ -51,16 +58,55 @@
             return console.warn(`No se colocó el texto o no se colocó la palabra`);
         }
 
-        if (typeof(texto) != 'string' && typeof(texto) != 'palabra') {
+        if (typeof(texto) != 'string' && typeof(texto) != 'string') {
             return console.warn(`El texto ${texto} y la palabra ${palabra} no son de tipo string`);
         }
 
-        if (typeof(texto) != 'string' || typeof(texto) != 'palabra') {
+        if (typeof(texto) != 'string' || typeof(texto) != 'string') {
             return console.warn(`El texto ${texto} o la palabra ${palabra} no son de tipo string`);
         }
+        if (!texto.includes(palabra)) {
+            return console.warn(`La palabra ${palabra} no se encuentra en el texto ${texto}`);
+        }
+        const textoDividido = texto.split(' ');
+        let aux = 0;
+
+        for (let i = 0; i < textoDividido.length; i++) {
+            if (textoDividido[i] === palabra) {
+                aux++;
+            }   
+        }
+        return console.log(`La palabra ${palabra} en el texto ${texto} se encuentra: ${aux} veces`);
     }
+
+    contarPalabras("hola mundo adios mundo", "mundo");
+    contarPalabras("hola mundo", "mundo");
+    contarPalabras("hola mundo hola hola mundos", "hola");
+    contarPalabras("hola mundo hola hola mundos", "miau");
+
     //Ejercicio_6_solución_2
-    
+    const textoEnCandena = (cadena = "", texto ="") =>{
+        if (!cadena) {
+            return console.warn("No se ingresó la cadena de texto");
+        }
+        if (!texto) {
+            console.warn("No se ingresó el texto a evaluar");
+        }
+        let i = 0
+            contador = 0;
+        while (i!==-1) {
+            i = cadena.indexOf(texto, i);
+            if (i !== -1) {
+                i++;
+                contador++;
+            }
+        }
+        return console.info(`La palabra ${texto} se repite ${contador} veces`);
+    }
+    textoEnCandena();
+    textoEnCandena("","mundo");
+    textoEnCandena("hola mundo adios mundo","mundo");
+    textoEnCandena("hola mundo adios mundo mundo mundo","mundo");
     
     
     //Ejercicio_7_solución_1
@@ -74,20 +120,71 @@
             return console.warn(`La palabra ${palabra} no es de tipo string`);
         }
 
-        let arreglo = palabra.split('');
-        let pal = "";
-        let i = 0;
-        while (i < 3) {
-            arreglo = arreglo.reverse().toString().replace(',' , '');
-            i++;
-            console.log(arreglo);
+        if (palabra.split('').reverse().join('') !== palabra) {
+            return console.warn(`La palabra ${palabra} no es un palindromo`);
         }
+        return console.log(true);
     }
 
     palindromo("salas");
-    
-    //Ejercicio_2_solución_2
+    palindromo("sopas");
+    palindromo("mundo");
 
+    //Ejercicio_7_solución_2
+    const palindrom = (string = "")=>{
+        if (!string) {
+            console.warn("No se ingresó ninguna palabra");
+        }
+        string = string.toLowerCase();
+        let alReves = string.split('').reverse().join('');
+        return (string === alReves)
+        ?console.log(`Sí es palindromo, Palabra original ${string}, Palabra al revés ${alReves}`)
+        :console.log(`No es palindromo, Palabra original ${string}, Palabra al revés ${alReves}`);
+    }
+
+    palindrom();
+    palindrom("hola mundo");
+    palindrom("salas");
+
+
+
+    //Ejercicio_8_solución_1
+        const eliminarCaracteres = (texto = "", caracteres = "") =>{
+            if (!texto && !caracteres) {
+            return console.warn(`No se colocó ni el texto ni los caracteres`);
+            }
+
+            if (!texto || !caracteres) {
+                return console.warn(`No se colocó el texto o no se colocó los caracteres`);
+            }
+
+            if (typeof(texto) != 'string' && typeof(texto) != 'string') {
+                return console.warn(`El texto ${texto} y los caracteres ${caracteres} no son de tipo string`);
+            }
+
+            if (typeof(texto) != 'string' || typeof(texto) != 'string') {
+                return console.warn(`El texto ${texto} o los caracteres ${caracteres} no son de tipo string`);
+            }
+            return console.log(texto.replace(caracteres,''));
+
+        }
+        eliminarCaracteres("xyz1","xyz");
+        eliminarCaracteres("xyz2","xyz");
+        eliminarCaracteres("xyz3","xyz");
+
+    //Ejercicio_8_solución_2
+    const deleteCharacters = (text = "", path ="") =>{
+        (!text)
+        ?console.warn("No se ingresó un texto")
+        : (!path)
+            ?console.warn("No se ingresó un patrón")
+            :console.info(text.replace(new RegExp(path, "ig"),""));
+    }
+
+    deleteCharacters();
+    deleteCharacters("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz");
+    deleteCharacters("xyz1, xyz2, xyz3, xyz4 y xyz5", "xy");
+    deleteCharacters("Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sequi minima aliquid eum? Consequatur aliquam id rem, perferendis nihil nemo et velit iusto modi alias soluta dicta numquam fugit in.", "[a-z]");
         
     </script>
 </body>
