@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica-5</title>
+</head>
+<body>
+    <h1>Ejercicios de Lógica de Programación 5</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        /*
+        15) Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10.
+        16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800.
+        17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).*/
+
+        // Ejercicio_15_solución_1
+        const binADecYDecABin = (numero = undefined, base = undefined) =>{
+            if (numero === undefined) {
+                return console.warn("No se ingresó un número");
+            }
+            if (typeof(numero) !== 'number') {
+                return console.error(`El valor ${numero} no es un número`);
+            }
+            if (numero < 0) {
+                return console.error("No se aceptan numeros negativos");
+            }
+            if (base === undefined) {
+                return console.warn("No se ingresó una base");
+            }
+            if (typeof(base) !== 'number') {
+                return console.error(`El valor ${base} no es un número`);
+            }
+            if (base < 0) {
+                return console.error("No se aceptan numeros negativos");
+            }
+            if (base !== 2 && base !== 10) {
+                return console.log("No es base 2 o 10");
+            }
+            if (base === 2) {
+                numero = numero.toString();
+                let aux = numero.length-1,
+                    decimal = 0;
+                for (let i = 0; i < numero.length; i++) {
+                    if (numero[i] !== '0' && numero[i]!=='1') {
+                        return console.error(`El valor ${numero} no es un número binario`);
+                        break;
+                    }
+                    decimal += (numero[i])*(Math.pow(2,aux));
+                    aux--;
+                }
+                return console.info(`El número ${numero} binario a decimal es: ${decimal} base 10`);
+            }
+            if (base === 10) {
+                let aux = [];
+                do {
+                    aux.push(numero%2);
+                    numero = Math.floor(numero/2);
+                    console.log(numero);
+                } while (numero > 0);
+                console.info(`El número ${numero} decimal a binario es : ${aux.reverse().join('')} base 2`);
+            }
+        }
+        binADecYDecABin(11,2);
+        binADecYDecABin(174,10);
+        binADecYDecABin(1010,10);
+
+        // Ejercicio_15_solución_2
+        const convertiBinarioDecimal = (numero = undefined, base = undefined) =>{
+            if (numero === undefined) {
+                return console.warn("No se ingresó un número");
+            }
+            if (typeof(numero) !== 'number') {
+                return console.error(`El valor ${numero} no es un número`);
+            }
+            if (base === undefined) {
+                return console.warn("No se ingresó una base");
+            }
+            if (typeof(base) !== 'number') {
+                return console.error(`El valor ${base} no es un número`);
+            }
+            if (base === 2) {
+                return console.info(`${numero} base ${base} = ${parseInt(numero,base)} base 10`);
+            }else if (base === 10) {
+                return console.info(`${numero} base ${base} = ${numero.toString(base)} base 2`);
+            }else{
+                console.error("El tipo de base a convertir no es válido");
+            }
+        }
+        convertiBinarioDecimal();
+        convertiBinarioDecimal("2");
+        convertiBinarioDecimal(100);
+        convertiBinarioDecimal(100,"2");
+        convertiBinarioDecimal(100,2);
+        convertiBinarioDecimal(101,2);
+        convertiBinarioDecimal(4,10);
+        convertiBinarioDecimal(114,10);
+
+
+        // Ejercicio_16_solución_1
+        const descuento = (numero = undefined, porcentaje = 0) =>{
+            if (numero === undefined) {
+                return console.warn("No se ingresó ningun numero");
+            }
+            if (typeof(numero) !== 'number') {
+                return console.error(`El valor ${numero} no es un número`);
+            }
+            if (typeof(porcentaje) !== 'number') {
+                return console.error(`El valor ${porcentaje} no es un número`);
+            }
+            if (numero < 0 && porcentaje < 0) {
+                return console.error("No se aceptan numeros negativos");
+            }
+            let cantidad = ((porcentaje * numero) / (100));
+            return console.info(`Monto final : ${numero-cantidad}`);
+        }
+        descuento(1000,20);
+        descuento(1000,10);
+
+        // Ejercicio_16_solución_2
+        const aplicarDescuento = (monto = undefined, descuento = 0) =>{
+            if (monto === undefined) {
+                return console.warn("No se ingresó ningun numero");
+            }
+            if (typeof(monto) !== 'number') {
+                return console.error(`El valor ${monto} no es un número`);
+            }
+            if (monto === 0) {
+                return console.error("El monto no puede ser 0");
+            }
+            if (Math.sign(monto) === -1) {
+                return console.error("El monto no puede ser negativo");
+            }
+            if (typeof(descuento) !== 'number') {
+                console.error(`El valor ${descuento} no es un número`);
+            }
+            if (Math.sign(descuento) === -1) {
+                return console.error("El descuento no puede ser negativo");
+            }
+
+            return console.info(`${monto} - ${descuento} % = ${(monto)-((monto*descuento)/100)}`);
+        }
+        console.clear();
+        aplicarDescuento();
+        aplicarDescuento("200");
+        aplicarDescuento(0);
+        aplicarDescuento(-1000);
+        aplicarDescuento(1000,"20");
+        aplicarDescuento(1000,20);
+        aplicarDescuento(1000);
+        aplicarDescuento(1000, 25);
+        
+        
+        // Ejercicio_17_solución_1
+        const diferenciaDeAnios = (fecha = null) =>{
+            if (fecha === null) {
+                return console.warn("No se ingresó una fecha");
+            }
+            if (fecha.getFullYear() > new Date().getFullYear()) {
+                return console.error(`No hay diferencia, nos faltan ${fecha.getFullYear() - new Date().getFullYear()} años` );
+            }
+            return console.info(`La diferencia de años de ${fecha.getFullYear()} con ${new Date().getFullYear()} es de: ${new Date().getFullYear() - fecha.getFullYear()} años`);
+        }
+        console.clear();
+        diferenciaDeAnios(new Date(2020,00,01));
+        diferenciaDeAnios(new Date(2020,00,01));
+        diferenciaDeAnios(new Date(2026,00,01));
+        diferenciaDeAnios(new Date(1998,00,01));
+
+        // Ejercicio_17_solución_2
+        const calcularAnios = (fecha = undefined) =>{
+            if (fecha === undefined) {
+                return console.warn("No se ingresó una fecha");
+            }
+            if (!(fecha instanceof Date)) {
+                return console.error("El valor ingresado no es una fecha válida");
+            }
+            let hoyMenosFecha = new Date().getTime() - fecha.getTime();
+            let aniosEnMS = 1000*60*60*24*365;
+            let aniosHumanos = Math.floor(hoyMenosFecha / aniosEnMS);
+
+            return (Math.sign(aniosHumanos) === -1)
+            ? console.info(`Faltan ${Math.abs(aniosHumanos)} años para el ${fecha.getFullYear()}`)
+            :(Math.sign(aniosHumanos) === 1)
+                ?console.info(`Han pasado ${aniosHumanos} años desde ${fecha.getFullYear()}`)
+                :console.info(`Estamos en el año actual ${fecha.getFullYear()}`);;
+        }
+        console.clear();
+        calcularAnios();
+        calcularAnios({});
+        calcularAnios(false);
+        calcularAnios(new Date());
+        calcularAnios(new Date(1998,10,15));
+        calcularAnios(new Date(2084,10,15));
+    </script>
+</body>
+</html>
