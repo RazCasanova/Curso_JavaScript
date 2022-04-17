@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 6 </title>
+</head>
+<body>
+    <h1>Ejercicios de Lógica de Programación 6</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        /*
+        18) Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5.
+        19) Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero.
+        20) Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero.
+        */
+
+        // Ejercicio_18_solución_1
+        const vocalesYConsonantes = (texto = '') =>{
+            if (texto === '') {
+                return console.warn("No se ingresó un texto");
+            }
+            if (typeof(texto) !== 'string') {
+                return console.error(`El valor ${texto} no es un string`);
+            }
+            let expRegVocales = /[a,e,i,o,u]/ig;
+            let expRegConsonantes = /[^a,e,i,o,u]/ig;
+            console.info(`El número de vocales en el texto ${texto} es : ${texto.split(' ').join('').match(expRegVocales).length}`);
+            console.info(`El número de consonantes en el texto ${texto} es : ${texto.split(' ').join('').match(expRegConsonantes).length}`);
+        }
+        vocalesYConsonantes("Hola mundo");
+        vocalesYConsonantes();
+        vocalesYConsonantes(9);
+        vocalesYConsonantes("abcde");
+
+       
+
+        // Ejercicio_19_solución_1
+        const validarNombre =(nombre ="") =>{
+            if(nombre === ''){
+                return console.warn('No se ingreso un nombre');
+            }
+            if(typeof(nombre) !== 'string'){
+                return console.error(`El valor ${nombre} no es una cadena de texto`);
+            }
+            let expReg = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/g.test(nombre);
+            return(expReg) 
+            ?console.info(`${nombre} es un nombre válido`)
+            :console.warn(`${nombre} no es un nombre válido`);
+        }
+        validarNombre();
+        validarNombre(0);
+        validarNombre("Raziel");
+        validarNombre("Raziel9");
+        validarNombre("Raziel Casanova");
+
+        const validarCorreo = (email = "") =>{
+            if(email === ''){
+                return console.warn('No se ingreso un nombre');
+            }
+            if(typeof(email) !== 'string'){
+                return console.error(`El valor ${email} no es una cadena de texto`);
+            }
+            let expReg = /[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})/i.test(email);
+            return(expReg) 
+            ?console.info(`${email} es un email válido`)
+            :console.warn(`${email} no es un email válido`);;
+        }
+        validarCorreo();
+        validarCorreo(32);
+        validarCorreo("raz@gmail.com");
+        validarCorreo("raz@gmail.");
+
+
+        const patron = (cadena = "", patron = undefined) =>{
+            if(cadena === ''){
+                return console.warn('No se ingreso una cadena');
+            }
+            if(typeof(cadena) !== 'string'){
+                return console.error(`El valor ${cadena} no es una cadena de texto`);
+            }
+            if(patron === undefined){
+                return console.warn('No se ingreso un patron');
+            }
+            if(!patron instanceof RegExp){
+                return console.error(`El valor ${patron} no es una expresión regular`);
+            }
+
+            let expReg = patron.test(cadena);
+            return(expReg) 
+            ?console.info(`${cadena} es un cadena válido`)
+            :console.warn(`${cadena} no es un cadena válido`);;
+        }
+
+        patron();
+        patron(2);
+        patron("raziel",/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/g);
+
+    </script>
+</body>
+</html>
