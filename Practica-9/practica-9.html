@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 9</title>
+</head>
+<body>
+    <h1>Ejercicios de Lógica de Programación 9</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+/*
+27) Programa una clase llamada Pelicula.
+
+La clase recibirá un objeto al momento de instanciarse con los siguentes datos: id de la película en IMDB, titulo, director, año de estreno, país o países de origen, géneros y calificación en IMBD.
+  - Todos los datos del objeto son obligatorios.
+  - Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y los 
+     7 restantes números.
+  - Valida que el título no rebase los 100 caracteres.
+  - Valida que el director no rebase los 50 caracteres.
+  - Valida que el año de estreno sea un número entero de 4 dígitos.
+  - Valida que el país o paises sea introducidos en forma de arreglo.
+  - Valida que los géneros sean introducidos en forma de arreglo.
+  - Valida que los géneros introducidos esten dentro de los géneros aceptados*.
+  - Crea un método estático que devuelva los géneros aceptados*.
+  - Valida que la calificación sea un número entre 0 y 10 pudiendo ser decimal de una posición.
+  - Crea un método que devuelva toda la ficha técnica de la película.
+  - Apartir de un arreglo con la información de 3 películas genera 3 
+    instancias de la clase de forma automatizada e imprime la ficha técnica 
+    de cada película.
+
+* Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.
+*/
+    class Pelicula{
+        constructor({id, titulo,director, estreno, pais, generos, calificacion}) {
+            this.id = id;
+            this.titulo = titulo;
+            this.director = director;
+            this.estreno = estreno;
+            this.pais = pais;
+            this.generos = generos;
+            this.calificacion = calificacion;
+
+
+            this.validarId(id);
+            this.validarTitulo(titulo);
+            this.validarDirector(director);
+            this.validarEstreno(estreno);
+            this.validarPais(pais);
+            this.validarGeneros(generos);
+            this.validarCalificacion(calificacion);
+        }
+
+        static get listaGeneros(){
+            return['Action', 'Adult', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Documentary' ,'Drama', 'Family', 'Fantasy', 'Film','Noir', 'Game-Show', 'History', 'Horror', 'Musical', 'Music', 'Mystery', 'News', 'Reality-TV', 'Romance', 'Sci-Fi', 'Short', 'Sport', 'Talk-Show', 'Thriller', 'War', 'Western'];
+        }
+
+        static generosAceptados(){
+            return console.info(`Los generos aceptados son: ${Pelicula.listaGeneros}`);
+        }
+
+        validarLongitudCadena(propiedad, valor, longitud){
+            if (valor.length > longitud) {
+                return console.error(`${propiedad} ${valor} excede el número de caracteres permitidos (${longitud}`);
+            }
+            return true;
+        }
+
+        validarCadena(propiedad, valor){
+            if (!valor) {
+                return console.warn(`${propiedad} ${valor} esta vacío`);   
+            }
+            if (typeof(valor) !== 'string') {
+                return console.error(`${propiedad} ${valor} no es cadena de texto`);
+            }
+            return true;
+        }
+
+        validarNumero(propiedad, valor){
+            if (!valor) {
+                return console.warn(`${propiedad} ${valor} esta vacío`);
+            }
+            if (typeof(valor) !== 'number') {
+                return console.error(`${propiedad} ${valor} no es un número`);
+            }
+            return true;
+        }
+
+        validarArreglo(propiedad, valor){
+            if (!valor) {
+                return console.warn(`${propiedad} ${valor} esta vacio`);
+            }
+            if (!(valor instanceof Array)) {
+                return console.error(`${propiedad} ${valor} no es un arreglo`);
+            }
+            if (valor.length === 0) {
+                return console.error(`${propiedad} ${valor} no tiene datos`);
+            }
+            for (const cadena of valor) {
+                if (typeof cadena !== 'string') {
+                    return console.error(`El valor ${candena} no es una cadena de texto`);
+                }
+            }
+            return true;
+        }
+
+        validarId(id){
+            if (this.validarCadena("IMDB id", id)) {
+                const expRegId = /([a-zA-Z]{2,2})+([0-9]{7,7})/ig;
+                if (!(expRegId.test(id))) {
+                    return console.error(`El id no es valido, debe tener 9 caracteres, los 2 primeros`);
+                }
+            }
+        }
+
+        // validarTitulo(){
+        //     if (this.objeto.titulo.length > 100) {
+        //         return console.error("El titulo no debe sobrepasar los 100 caracteres");
+        //     }else{
+        //         return console.info(this.objeto.titulo.length);
+        //     }
+        // }
+        validarTitulo(titulo){
+            if (this.validarCadena("Titulo", titulo)) {
+                if (this.validarLongitudCadena("Titulo", titulo, 100)) {
+                    
+                }
+            }
+        }
+
+        // validarDirector(){
+        //     if (this.objeto.director.length > 50) {
+        //         return console.error("El director no debe sobrepasar los 50 caracteres");
+        //     }else{
+        //         return console.info(this.objeto.director.length);
+        //     }
+        // }
+        validarDirector(director){
+            if (this.validarCadena("Director", director)) {
+                if (this.validarLongitudCadena("Director", director, 50)) {
+                    
+                }
+            }
+        }
+        
+        // validarEstreno(){
+        //     const expRegAnio = /^(\d{4,4})$/gi
+        //     if (expRegAnio.test(this.objeto.anioEstreno)) {
+        //         console.info(this.objeto.anioEstreno.length);
+        //     }else{
+        //         return console.error("Hay un error en el año");
+        //     }
+        // }
+
+        validarEstreno(estreno){
+            if (this.validarNumero("Año de estreno", estreno)) {
+                const expRegEstreno = /^(\d{4,4})$/gi
+                if (!(expRegEstreno.test(estreno))) {
+                    return console.error(`Año de estreno ${estreno} no es valido, debe ser un número de 4 digitos`);
+                }
+            }
+        }
+
+        // valirdarPais(){
+        //     if (this.objeto.pais.length === 0) {
+        //         return console.error("El arreglo de paises esta vacio");
+        //     }
+        //     if (!(this.objeto.pais instanceof Array)) {
+        //         return console.error("El valor en paises no es un arreglo");
+        //     }
+        // }
+
+        validarPais(pais){
+            if (this.validarArreglo("Pais", pais)) {
+            }
+        }
+
+        // validarGeneros(){
+        //     if (this.objeto.generos.length === 0) {
+        //         return console.error("El arreglo de generos esta vacio");
+        //     }
+        //     if (!(this.objeto.generos instanceof Array)) {
+        //         return console.error("El valor en generos no es un arreglo");
+        //     }
+        //     const arregloGeneros = ['Action', 'Adult', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Documentary' ,'Drama', 'Family', 'Fantasy', 'Film','Noir', 'Game-Show', 'History', 'Horror', 'Musical', 'Music', 'Mystery', 'News', 'Reality-TV', 'Romance', 'Sci-Fi', 'Short', 'Sport', 'Talk-Show', 'Thriller', 'War', 'Western'];
+        //     const arr = [this.objeto.generos];
+        //     for (const iterator of this.objeto.generos) {
+        //         if (arregloGeneros.indexOf(iterator) === -1) {
+        //             return console.error(`El valor ${iterator} no se encuentra en los generos ${arregloGeneros}`);
+        //         }else{
+        //             console.info(iterator);;
+        //         }
+        //     }
+        // }
+
+        validarGeneros(generos){
+            if (this.validarArreglo("Generos",generos)) {
+                for (const genero of generos) {
+                    if (!(Pelicula.listaGeneros.includes(genero))) {
+                        console.error(`Géneros incorrectos ${generos}`);
+                        Pelicula.generosAceptados();
+                    }
+                }
+            }
+        }
+        
+        // validarClasificacion(){
+        //     if (this.objeto.calificacion < 0 || this.objeto.calificacion > 10) {
+        //         return console.error("La clasificación debe ser entre 0 y 10");
+        //     }else{
+        //         return console.info(this.objeto.calificacion);
+        //     }
+        // }
+
+        validarCalificacion(calificacion){
+            if (this.validarNumero("Calificación",calificacion)) {
+                return (calificacion < 0 || calificacion > 10)
+                ?console.error("La calificación debe estar en un rango de 0 a 10")
+                :this.calificacion = calificacion.toFixed(1);
+            }
+        }
+
+        fichaTecnica(){
+            console.info(`Ficha técnica:\nTitulo: ${this.titulo}\nDirector: ${this.director}\nAño: ${this.estreno}\nPaís: ${this.pais}\nGéneros: ${this.generos}\nCalificación: ${this.calificacion}\nID: ${this.id}`);
+        }
+
+    }
+
+    const objeto = {
+        id : 'tt0000000',
+        titulo : 'Hola', 
+        director : 'mundo', 
+        estreno : 2020, 
+        pais : ['México'],
+        generos : ['Adventure','Romance','Animation'],
+        calificacion : 9.13
+    }
+    const peli = new Pelicula(objeto);
+    peli.fichaTecnica();
+    const peliculas = [
+        {
+        id : 'tt0000000',
+        titulo : 'Hola', 
+        director : 'mundo', 
+        estreno : 2020, 
+        pais : ['México'],
+        generos : ['Adventure','Romance','Animation'],
+        calificacion : 9.13   
+        },
+        {
+        id : 'tt0000000',
+        titulo : 'mundo', 
+        director : 'hola', 
+        estreno : 2021, 
+        pais : ['México', 'Canada'],
+        generos : ['Adventure','Romance','Animation'],
+        calificacion : 9.13   
+        }
+    ];
+    peliculas.forEach(el => new Pelicula(el).fichaTecnica());
+    </script>
+</body>
+</html>
