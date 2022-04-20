@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 8</title>
+</head>
+<body>
+    <h1>Ejercicios de Lógica de Programación 8</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+/*
+    24) Programa una función que dado un arreglo de números devuelva un objeto con dos arreglos, el primero tendrá los numeros ordenados en forma ascendente y el segundo de forma descendiente, pe. miFuncion([7, 5,7,8,6]) devolverá { asc: [5,6,7,7,8], desc: [8,7,7,6,5] }.
+    25) Programa una función que dado un arreglo de elementos, elimine los duplicados, pe. miFuncion(["x", 10, "x", 2, "10", 10, true, true]) devolverá ["x", 10, 2, "10", true].
+    26) Programa una función que dado un arreglo de números obtenga el promedio, pe. promedio([9,8,7,6,5,4,3,2,1,0]) devolverá 4.5.
+*/
+// Ejercicio_24_solucion_1
+        const ascendenteDescendiente = (arreglo = undefined) =>{
+            if (arreglo === undefined) {
+                return console.warn("No se ingreso un arreglo");
+            }
+            if (arreglo.length === 0) {
+                return console.error("No hay valores en el arreglo");
+            }
+            if (!(arreglo instanceof Array)) {
+                return console.error(`El valor ${arreglo} no es un arreglo`);
+            }
+            for (const num of arreglo) {
+                if (typeof(num) !== 'number') {
+                    return console.error(`El valor ${num} en el arreglo no es un número`);
+                }
+            }
+            const orden = arreglo.sort(function(x,y) {
+                return x-y;
+            });
+            console.info(`Arreglo ${arreglo}.\n asc : ${orden}\ndesc : ${orden.reverse()}`);
+        }
+
+        ascendenteDescendiente();
+        ascendenteDescendiente(true);
+        ascendenteDescendiente([]);
+        ascendenteDescendiente([1,2,3,4]);
+        ascendenteDescendiente([9,10,1,4]);
+        ascendenteDescendiente([7, 5,7,8,6]);
+
+// Ejercicio_24_solucion_2
+        const ordenarArreglo = (arreglo = undefined) =>{
+            if (arreglo === undefined) {
+                return console.warn("No se ingreso un arreglo");
+            }
+            if (arreglo.length === 0) {
+                return console.error("No hay valores en el arreglo");
+            }
+            if (!(arreglo instanceof Array)) {
+                return console.error(`El valor ${arreglo} no es un arreglo`);
+            }
+            for (const num of arreglo) {
+                if (typeof(num) !== 'number') {
+                    return console.error(`El valor ${num} en el arreglo no es un número`);
+                }
+            }
+            return console.info({
+                arreglo,
+                asc : arreglo.map(el => el).sort(),
+                desc : arreglo.map(el => el).sort().reverse() 
+            }
+            );
+        }
+
+        ordenarArreglo();
+        ordenarArreglo(true);
+        ordenarArreglo([7, 5,7,8,6]);
+
+// Ejercicio_25_solucion_1
+        const valoresUnicos = (arreglo = undefined) => {
+            if (arreglo === undefined) {
+                return console.warn("No se ingreso un arreglo");
+            }
+            if (arreglo.length === 0) {
+                return console.error("No hay valores en el arreglo");
+            }
+            if (!(arreglo instanceof Array)) {
+                return console.error(`El valor ${arreglo} no es un arreglo`);
+            }
+            return console.log(... new Set(arreglo));
+        }
+        valoresUnicos([1,2,3,4,3,4,3,4]);
+        valoresUnicos([1,2,3,4,2,true,"x",true]);
+        valoresUnicos(["x", 10, "x", 2, "10", 10, true, true]);
+
+// Ejercicio_25_solucion_2
+        const quitarDuplicados = (arreglo = undefined) =>{
+            if (arreglo === undefined) {
+                return console.warn("No se ingreso un arreglo");
+            }
+            if (arreglo.length === 0) {
+                return console.error("No hay valores en el arreglo");
+            }
+            if (!(arreglo instanceof Array)) {
+                return console.error(`El valor ${arreglo} no es un arreglo`);
+            }
+            if (arreglo.length === 1) {
+                return console.warn("El arreglo debe de contener por lo menos 2 elementos");
+            }
+            return console.info({
+                original : arreglo,
+                sinDuplicados : arreglo.filter((value, index, self)=>self.indexOf(value) === index) 
+            });
+        }
+        quitarDuplicados();
+        quitarDuplicados([]);
+        quitarDuplicados([1]);
+        quitarDuplicados(["x", 10, "x", 2, "10", 10, true, true]);
+
+
+// Ejercicio_26_solucion_1
+        const promedio = (arreglo = undefined) =>{
+            if (arreglo === undefined) {
+                return console.warn("No se ingreso un arreglo");
+            }
+            if (arreglo.length === 0) {
+                return console.error("No hay valores en el arreglo");
+            }
+            if (!(arreglo instanceof Array)) {
+                return console.error(`El valor ${arreglo} no es un arreglo`);
+            }
+            for (const num of arreglo) {
+                if (typeof(num) !== 'number') {
+                    return console.error(`El valor ${num} en el arreglo no es un número`);
+                }
+            }
+            let suma = 0;
+            for (const num of arreglo) {
+                suma += num;
+            }
+            return console.info(`El promedio de [${arreglo}] es : ${suma/arreglo.length}`);
+        }
+
+        promedio();
+        promedio([]);
+        promedio([9,8,7,6,5,4,3,2,1,0]);
+        promedio([10,10,10,"8"]);
+        promedio([10,10,10,8]);
+
+// Ejercicio_26_solucion_2
+        const promedioNumeros = (arreglo = undefined) =>{
+            if (arreglo === undefined) {
+                return console.warn("No se ingreso un arreglo");
+            }
+            if (arreglo.length === 0) {
+                return console.error("No hay valores en el arreglo");
+            }
+            if (!(arreglo instanceof Array)) {
+                return console.error(`El valor ${arreglo} no es un arreglo`);
+            }
+            for (const num of arreglo) {
+                if (typeof(num) !== 'number') {
+                    return console.error(`El valor ${num} en el arreglo no es un número`);
+                }
+            }
+            return console.info(arreglo.reduce((total, num, index, arreglo)=>{
+                total+=num;
+                if (index === arreglo.length-1) {
+                    return `El promedio de ${arreglo.join(' + ')} es : ${total / arreglo.length}`;
+                }else{
+                    return total;
+                }
+            }
+            ));
+        }
+        promedioNumeros();
+        promedioNumeros(1);
+        promedioNumeros([1,"2"]);
+        promedioNumeros([9,8,7,6,5,4,3,2,1,0]);
+    </script>
+</body>
+</html>
