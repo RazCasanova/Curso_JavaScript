@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporizadores en JavaScript</title>
+</head>
+<body>
+    <h1>Temporizadores en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        // console.log("inicio");
+        // setTimeout(() => {
+        //    console.log("Ejecutando un setTimeout, esto se ejecuta una sola vez"); 
+        // }, 3000);
+
+        // setInterval(() => {
+        //     console.log("Ejecutando un setInterval, esto se ejecuta indefinidamente cada cierto intervalo");
+        // }, 1000);
+
+        let temporizador = setTimeout(() => {
+            console.log(new Date().toLocaleTimeString());
+        }, 1000);
+
+        /*Para que pueda actuar clearTimeout, setTimeout debe ser almacenado en una variable*/
+        clearTimeout(temporizador);
+        console.log("Del clearTimeout");
+        
+        /*Para que pueda actuar clearInterval, setInterval debe ser almacenado en una variable*/
+        let temp = setInterval(() => {
+            console.log(new Date().toLocaleTimeString());            
+        }, 1000);
+        clearInterval(temp);
+        console.log("Del clearInterval");
+        </script>
+</body>
+</html>
