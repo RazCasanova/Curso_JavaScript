@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevos Tipos de datos en JavaScript</title>
+</head>
+<body>
+    <h1>Nuevos Tipos de datos en JavaScript</h1>
+    <h2>Symbol</h2>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        /*
+        Symbol
+            Los simbolos permiten crear identificadores unicos 
+            Su uso es crear elementos privados y sus referencias serán unicas
+        */
+       let id = Symbol("id");
+       let id2 = Symbol("id");
+    //    let id = "hola";
+    //    let id2 = "hola";
+
+       console.log(id === id2);
+       console.log(id, id2);
+       console.log(typeof id, typeof id2);
+
+       const NOMBRE = Symbol("nombre");
+       const SALUDAR = Symbol("saludar");
+
+       const persona = {
+           [NOMBRE] : "Raziel",
+           edad : 23
+       };
+
+       console.log(persona);
+       
+       persona.NOMBRE = "Raziel Casanovas";
+       console.log(persona);
+
+       /*Valor de la propieda*/
+       console.log(persona.NOMBRE);
+
+       /*Referencia del simbolo*/
+       console.log(persona[NOMBRE]);
+       
+       persona[SALUDAR] = function () {
+           console.log("Hola");
+        };
+        console.log(persona);
+
+        persona[SALUDAR]();
+
+        for (const propiedades in persona) {
+            console.log(propiedades);
+            console.log(persona[propiedades]);
+        }
+
+console.log(Object.getOwnPropertySymbols(persona));
+        
+    </script>
+</body>
+</html>
