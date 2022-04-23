@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this en JavaScript</title>
+</head>
+<body>
+    <h1>this en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+
+        // this hace referencia al objeto global (window)
+        console.log(this);
+        console.log(window);
+
+        console.log(this === window); //this es igual a window
+
+        this.nombre = "Contexto global";
+        console.log(nombre);
+        console.log(this.nombre);
+        
+        function imprimir() {
+            console.log("En funcion : " , this.nombre);
+        }
+        imprimir();
+
+        const objeto = {
+            nombre : "Contexto objeto",
+            imprimir : function () {
+                console.log(this.nombre);
+            }
+        }
+        console.log(objeto);
+
+        const objeto2 = {
+            nombre : "Contexto objeto 2",
+            // función imprimir que se encuentra en el scope de window, sin embargo se encuentre en el scope del objeto y toma el nombre de dicho objeto
+            imprimir
+        }
+        objeto2.imprimir();
+
+
+        const objeto3 = {
+            nombre : "Contexto objeto 3",
+            // Las arrow function no crea un scope, por lo cual la función imprimir toma el contexto global
+            imprimir : () =>{
+                console.log(this.nombre);
+            }
+        }
+
+        objeto3.imprimir();
+
+        function Persona(nombre) {
+            this.nombre = nombre;
+            // return console.log(this.nombre);
+
+            // La función anonima crea otro scope, y como no contiene la propiedad nombre dentro de ese scope, la propiedad nombre la tomará del scope global
+            // return function () {
+            //     console.log(this.nombre);
+            // }
+
+            // Para solucionar la creación del nuevo scope, se declara una arrow fuction, pues estás no crean un scope
+            return () => {
+                console.log(this.nombre);
+            }
+        }
+
+        let raz = new Persona("Raz");
+        raz();
+        
+        console.clear();
+
+        console.log(this);
+        this.lugar = "Contexto global";
+
+        function saludar(saludo, quien) {
+            console.log(`${saludo} ${quien} desde el ${this.lugar}`);
+        }
+
+        saludar("Hola","Nico");
+
+        const object = {
+            lugar : "Contexto objeto",
+        }
+
+        // call y apply recibirán el contexto con el cual queremos que esté referenciado
+
+        // call lo hace en forma de parametros
+        // apply  lo hace en forma de arreglo
+        saludar.call(object, "Hola", "Raziel");
+        
+        // Si colocamos null o this, aplica el contexto global
+        saludar.call(null, "Hola", "Raziel");
+        saludar.call(this, "Hola", "Raziel");
+        saludar.apply(object, ["adios","raz"]);
+        saludar.apply(this, ["adios","raz"]);
+        saludar.apply(null, ["adios","raz"]);
+
+
+        const people = {
+            name : "Raz",
+            greet : function() {
+                console.log(`Hola ${this.name}`);
+            }
+        }
+        people.greet();
+
+        this.name = "Window";
+        const otherPeople = {
+            // bind enlaza el contexto al que nosotro queremos que sea referenciado
+            // greet : people.greet.bind(people)
+            greet : people.greet.bind(this)
+        }
+
+        otherPeople.greet();
+    </script>
+</body>
+</html>
