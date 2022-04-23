@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterador e Iterables en JavaScript</title>
+</head>
+<body>
+    <h1>Iterador e Iterables en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        // const iterable = [1,2,3,4,5,6,6];
+        // const iterable = "Hola mundo";
+        const iterable = new Map([["nombre","Razile"]]);
+
+        //Acceso al iterador del iterable
+        const iterador = iterable[Symbol.iterator]();
+
+        console.log(iterable);
+        console.log(iterador);
+
+        // done indica si ya no hay iteradores en nuestro iterable
+
+        // console.log(iterador.next());
+        // console.log(iterador.next());
+        // console.log(iterador.next());
+        // console.log(iterador.next());
+        // console.log(iterador.next());
+        // console.log(iterador.next());
+        
+        let next = iterador.next();
+        while (!next.done) {
+            console.log(next.value);
+            next = iterador.next();
+        }
+
+
+        // Los generadores son funcines que nos permite trabajar de una mejor manera los iteradores
+
+    /*Los generadores convierten el código de una función en iterable*/
+        function* iterab (){
+            // yield es similar a un return
+            yield "hola";
+            console.log("Hola consola");
+            yield "hola2";
+            console.log("Seguimos con más instrucciones del código");
+            yield "hola3";
+            yield "hola4";
+
+        }
+        let iterator = iterab();
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        for (const y of iterator) {
+            console.log(y);
+        }
+
+        const arr = [...iterab()];
+        console.log(arr);
+
+        function cuadrado(valor) {
+            setTimeout(() => {
+                return console.log({valor, resultado: valor*valor});
+            }, Math.round()*1000);
+        }
+
+        function* generador() {
+            console.log("Inicia generador");
+            yield cuadrado(0);
+            yield cuadrado(1);
+            yield cuadrado(2);
+            yield cuadrado(3);
+            yield cuadrado(4);
+            yield cuadrado(5);
+            console.log("Termina generador");
+        }
+
+        let gen = generador();
+        for (const yield of gen) {
+            console.log(yield);
+        }
+
+
+        
+    </script>
+</body>
+</html>
