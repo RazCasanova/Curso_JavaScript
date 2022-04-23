@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxies en JavaScript</title>
+</head>
+<body>
+    <h1>Proxies en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        const persona ={
+            nombre : "",
+            apellido : "",
+            edad : 0
+        }
+
+        const manejador = {
+            set(objeto, propiedades, valor){
+                // validar si la propiedad se encuentra en el objeto original
+                if (Object.keys(objeto).indexOf(propiedades) === -1) {
+                    return console.error(`La propiedad ${propiedades} no existe en el objeto persona`);
+                }
+                if ((propiedades === 'nombre' || propiedades === 'apellido') && !(/^[A-Za-z\s]+$/g.test(valor))) {
+                    return console.error(`La propiedad ${propiedades} solo acepta letras y espacios en blanco`);
+                }
+                objeto[propiedades] = valor;
+            }
+        }
+
+        const raz = new Proxy(persona, manejador);
+        raz.nombre = "Raziel";
+        // raz.nombre = "Raziel9";
+        raz.apellido = "Casanova";
+        raz.edad = 23;
+        raz.twitter = '@raz';
+        
+        console.log(raz);
+        console.log(persona);
+
+    </script>
+</body>
+</html>
