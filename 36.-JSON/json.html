@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+<body>
+    <h1>JSON / JavaScript Object Notation</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+        // Valores que acepta un json
+        const json = {
+            candea : "Raziel",
+            numero : 23,
+            booleano : true,
+            arreglo : ["programar","dibujar"],
+            objeto : {
+                correo : "razielcasanovars@gmail.com",
+                facebook : "Raziel Casanova"
+            },
+            nulo : null
+        }
+        console.log(json);
+        // Los archivos .json no aceptan comentarios
+
+        // Todos los datos en formato json deben ser encerrados con comillas dobles "" (tanto las propiedades como los valores)
+
+        console.log(JSON);
+        // parse, lee una notación valida de json y la convierte a un objeto, arreglo, etc, de JavaScript
+        console.log(JSON.parse("{}")); 
+        // String
+        console.log("[1,2,3,4]");
+        // Notación convertida a un arreglo
+        console.log(JSON.parse("[1,2,3,4]"));
+        console.log(JSON.parse("19"));
+        console.log(JSON.parse("true"));
+        // console.log(JSON.parse("undefined"));
+
+
+        // stringify lee una notación valida de JavaScript y la convierte a cadena de texto en formato JSON
+        console.log(JSON.stringify({}));
+        console.log(JSON.stringify([1,2,3,4]));
+        console.log(JSON.stringify(true));
+        console.log(JSON.stringify(null));
+        console.log(JSON.stringify(undefined));
+        console.log(JSON.stringify({x:2,y:3}));
+
+
+        console.log(JSON.stringify(json));
+
+        console.log(JSON.parse('{"candea":"Raziel","numero":23,"booleano" : true,"arreglo" : ["programar","dibujar"],"objeto" : {"correo" : "razielcasanovars@gmail.com","facebook" : "Raziel Casanova"},"nulo" : null}'));
+    </script>
+</body>
+</html>

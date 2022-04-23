@@ -1,0 +1,11 @@
+{
+    "candea" : "Raziel",
+    "numero" : 23,
+    "booleano" : true,
+    "arreglo" : ["programar","dibujar"],
+    "objeto" : {
+        "correo" : "razielcasanovars@gmail.com",
+        "facebook" : "Raziel Casanova"
+    },
+    "nulo" : null
+}
