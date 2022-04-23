@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propiedades dinamicas en JavaScript</title>
+</head>
+<body>
+    <h1>Propiedades dinamicas en JavaScript</h1>
+    <a href="../index.html">Inicio🏠</a>
+    <br>
+    <script>
+
+        let aleatorio = Math.round(Math.random()*100 + 5);
+        const objetoUsuario = {
+            [`id_${aleatorio}`] : "Valor aleatorio"
+        }
+        console.log(objetoUsuario);
+
+        const usuario = ["Raziel","Angel","Andres","Selene"];
+        usuario.forEach((usuario, index)=>objetoUsuario[`id_${index}`] = usuario);
+        
+        console.log(objetoUsuario);
+
+
+    </script>
+</body>
+</html>
