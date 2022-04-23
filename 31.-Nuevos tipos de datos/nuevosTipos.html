@@ -9,6 +9,10 @@
 <body>
     <h1>Nuevos Tipos de datos en JavaScript</h1>
     <h2>Symbol</h2>
+    <h2>Set</h2>
+    <h2>Map</h2>
+    <h2>WeakSets</h2>
+    <h2>WeakMaps</h2>
     <a href="../index.html">Inicio🏠</a>
     <br>
     <script>
@@ -57,8 +61,158 @@
             console.log(persona[propiedades]);
         }
 
-console.log(Object.getOwnPropertySymbols(persona));
+    console.log(Object.getOwnPropertySymbols(persona));
+
+    const set = new Set([1,2,3,3,4,5,true,false, false, {}, "hola", "HOLA"]);
+
+    console.log(set);
+    console.log(set.size);
+
+    const set2 = new Set();
+    set2.add(1);
+    set2.add(2);
+    set2.add(2);
+    set2.add(3);
+    set2.add(false);
+    set2.add(true);
+    set2.add(false);
+    set2.add({});
+    console.log(set2);
+
+    for (const item of set) {
+        console.log(item);
+    }
+
+    set2.forEach(element => {
+        console.log(element);
+    });
+
+    /* Para acceder a los elementos de Set es necesario almacenar la conversón de Set a un arreglo */
+    let arr = Array.from(set);
+    console.log(arr);
+    console.log(arr[0]);
+
+    set.delete("hola");
+    console.log(set);
+
+    console.log(set.has("HOLA"));
+    console.log(set.has(4));
+    console.log(set.has(14));
+
+    set2.clear();
+    console.log(set2);
+
+    let mapa = new Map();
+    mapa.set('nombre', 'raziel');
+    mapa.set('apellido', 'casanova');
+    mapa.set('edad', 23);
+
+    console.log(mapa);
+    console.log(mapa.size);
+    console.log(mapa.has("correo"));
+    console.log(mapa.has("edad"));
+    console.log(mapa.get("nombre"));
+    mapa.set("nombre","raz");
+    console.log(mapa.get("nombre"));
+    mapa.delete("edad");
+    
+    mapa.set(19, "19");
+    mapa.set(false, "falso");
+    mapa.set({}, {});
+
+    console.log(mapa);
+
+    for (const [key, value] of mapa) {
+        console.log(`Llave: ${key}, Valor: ${value}`);
         
+    }
+
+    const mapa2 = new Map([
+        ["nombre","nico"],
+        ["edad",4],
+        ["animal","perro"],
+        [null,null]
+    ]);
+
+    console.log(mapa2);
+
+    const llavesMapa2 = [...mapa2.keys()];
+    const valoresMapa2 = [...mapa2.values()];
+
+    console.log(llavesMapa2);
+    console.log(valoresMapa2);
+
+
+    // const ws = new WeakSet([1,2,3,true,false,3,3]); no es posible almacenar objetos en una sola declaración
+
+    const ws = new WeakSet();
+    let valor1 = {"valor1" : 1};
+    let valor2 = {"valor2" : 2};
+    let valor3 = {"valor3" : 3};
+
+    ws.add(valor1);
+    ws.add(valor2);
+    console.log(ws);
+    
+    console.log(ws.has(valor1));
+    console.log(ws.has(valor3));
+    
+    ws.delete(valor2);
+    console.log(ws);
+    
+    ws.add(valor2);
+    ws.add(valor3);
+    console.log(ws);
+
+    // setInterval(() => {
+    //     console.log(ws);
+    // }, 1000);
+    
+    // setTimeout(() => {
+    //     // Si las referencias se nulifican, weakset elimina esos valores
+    //     valor1 = null;
+    //     valor2 = null;
+    //     valor3 = null;
+    // }, 5000);
+
+    // no es posible almacenar objetos en una sola declaración
+    // const wm = new WeakMap([
+    //     ["nombre" , "Raziel"],
+    //     ["edad" , 23],
+    //     [null , null],
+    // ]);
+
+    const wm = new WeakMap();
+    let llave1 = {};
+    let llave2 = {};
+    let llave3 = {};
+
+    wm.set(llave1,1);
+    wm.set(llave2,2);
+    console.log(wm);
+
+    console.log(wm.has(llave1));
+    console.log(wm.has(llave3));
+
+    console.log(wm.get(llave1));
+    console.log(wm.get(llave2));
+    console.log(wm.get(llave3));
+
+    wm.delete(llave2),
+    console.log(wm);
+
+    setInterval(() => {
+        console.log(wm);
+    }, 1000);
+
+    setTimeout(() => {
+        llave1 = null;
+        llave2 = null;
+        llave3 = null;
+    }, 5000);
+
+
+
     </script>
 </body>
 </html>
