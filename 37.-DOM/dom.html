@@ -5,11 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM en JavaScript</title>
+    <style>
+        :root{
+            --yellow-color:#F7DF1E;
+            --dark-color:#222;
+        }
+
+        .cards{
+            border: thin solid var(--dark-color);
+            padding: 1rem;
+        }
+
+        .card{
+            display: inline-block;
+            background-color: var(--dark-color);
+            color: var(--yellow-color);
+        }
+
+        .card figcaption{
+            padding: 1rem;
+        }
+
+        .rotate-45{
+            transform: rotate(45deg);
+        }
+
+        .rotate-135{
+            transform: rotate(135deg);
+        }
+
+        .opacity-80{
+            opacity: .8;
+        }
+
+        .sepia{
+            filter: sepia(1);
+        }
+
+    </style>
 </head>
 <body>
     <h1>DOM en JavaScript</h1>
     <h2>Document Object Model</h2>
-    <h3>Maejo del DOM</h3>
+    <h3>Manejo del DOM</h3>
     <p id="que-es">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sunt optio consequuntur veniam voluptates. Quidem sit quos quae est? Possimus, doloremque officia eius architecto ea quia temporibus voluptas deleniti consectetur!
     </p>
@@ -23,7 +61,7 @@
         </ul>
     </nav>
     <input type="text" name="nombre" placeholder="nombre">
-    <a class="link-dom" href="dom.html" data-id = "1" data-description="Document Object Model">DOM</a>
+    <a class="link-dom" href="dom.html" data-id = "1" data-description="Document Object Model" style="background-color: #f60; color: #000;">DOM</a>
 
     <section class="cards">
         <figure class="card">
@@ -48,6 +86,23 @@
         </figure>
     </section>
 
+    <template id="template-card">
+        <figure class="card">
+            <img>
+            <figcaption></figcaption>
+        </figure>
+    </template>
+
+    <h3>Eventos en JavaScript</h3>
+    <h4>Manejadores de eventos</h4>
+    <button onclick="alert(holaMundo())">Evento con atributo HTML</button>
+    <br><br>
+    <button id="evento-semantico">Evento con manejador semántico</button>
+    <br><br>
+    <button id="evento-multiple">Evento con manejador multiple</button>
+    <br><br>
+    <button id="evento-remover">Removiendo eventos con manejadores multiples</button>
+    <hr>
     <a href="../index.html">Inicio🏠</a>
     <br>
     <script src="dom.js"></script>

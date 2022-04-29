@@ -88,3 +88,376 @@ console.log($linkDOM.getAttribute('data-description'));
 console.log($linkDOM.hasAttribute('data-id'));
 $linkDOM.removeAttribute("data-id")
 console.log($linkDOM.hasAttribute('data-id'));
+
+console.clear();
+
+/* Acceder a los estilos de las etiquetas */
+console.log($linkDOM.style);
+console.log($linkDOM.getAttribute("style"));
+console.log($linkDOM.style.backgroundColor);
+console.log($linkDOM.style.color);
+console.log(window.getComputedStyle($linkDOM));
+console.log(getComputedStyle($linkDOM).getPropertyValue("color"));
+
+$linkDOM.style.setProperty("text-decoration","none");
+$linkDOM.style.setProperty("display","block");
+
+$linkDOM.style.width = "50%";
+$linkDOM.style.textAlign = "center";
+$linkDOM.style.marginLeft = "auto";
+$linkDOM.style.marginRight = "auto";
+$linkDOM.style.padding = "1rem";
+$linkDOM.style.borderRadius = ".5rem";
+console.log($linkDOM.style);
+console.log($linkDOM.getAttribute("style"));
+
+/* Variables CSS - Custom Properties CSS */
+
+const $html = document.documentElement,
+    $body = document.body;
+
+    let varDarkColor = getComputedStyle($html).getPropertyValue("--dark-color");
+    let varYellowColor = getComputedStyle($html).getPropertyValue("--yellow-color");
+console.log(varDarkColor);
+console.log(varYellowColor);
+
+$body.style.backgroundColor = varDarkColor;
+$body.style.color = varYellowColor;
+
+$html.style.setProperty("--dark-color","blue");
+// Para aplicar los nuevos colores de las variables es necesario reasignarle el valor a la variable
+varDarkColor = getComputedStyle($html).getPropertyValue("--dark-color");
+
+// $body.style.setProperty("background-color",varDarkColor);
+
+console.clear();
+
+const $card = document.querySelector('.card');
+
+console.log($card);
+console.log($card.className);
+console.log($card.classList);
+console.log($card.classList.contains("rotate-45"));
+
+$card.classList.add("rotate-45");
+console.log($card.classList.contains("rotate-45"));
+console.log($card.className);
+console.log($card.classList);
+
+$card.classList.remove("rotate-45");
+console.log($card.className);
+console.log($card.classList);
+
+$card.classList.toggle("rotate-45");
+console.log($card.className);
+console.log($card.classList);
+$card.classList.toggle("rotate-45");
+console.log($card.className);
+console.log($card.classList);
+$card.classList.toggle("rotate-45");
+
+$card.classList.replace("rotate-45","rotate-135");
+console.log($card.className);
+console.log($card.classList);
+
+// Para agregar o eliminar más de una clase a un elemento debe ser separado por comas 
+$card.classList.add("opaciti-80","sepia");
+console.log($card.className);
+console.log($card.classList);
+
+$card.classList.remove("opaciti-80","sepia");
+console.log($card.className);
+console.log($card.classList);
+
+$card.classList.toggle("rotate-135");
+
+console.clear();
+
+const $whatIsDOM = document.getElementById('que-es');
+
+let text = `
+<p>
+    El DOM (Document Object Model en español Modelo de Objetos del Documento) es una API definida para representar e interactuar con cualquier documento HTML o XML. El DOM es un modelo de documento que se carga en el navegador web y que representa el documento como un árbol de nodos, en donde cada nodo representa una parte del documento (puede tratarse de un elemento, una cadena de texto o un comentario). 
+</p>
+<p>
+    El DOM surgió a partir de la implementación de JavaScript en los navegadores. A esta primera versión también se la conoce como DOM 0 o "Legacy DOM". Hoy en día el grupo WHATWG es el encargado de actualizar el estándar de DOM.
+</p>
+`;
+
+// innerText respeta las tabulaciones del contenido a agregar sin embargo no reconoce las etiquetas HTML
+// innerText no es el estandar
+$whatIsDOM.innerText = text;
+
+// textContent quita las tabulaciones del contenido a agregar sin embargo no reconoce las etiquetas HTML
+// textContent es el estandar
+$whatIsDOM.textContent = text;
+
+// innerHTML renderiza el contenido html
+// innerHTML encapsula el contenido que se desea mostrar
+$whatIsDOM.innerHTML = text;
+
+// outerHTML renderiza el contenido html
+// outerHTML reemplaza el contenido por el que se desa mostrar
+$whatIsDOM.outerHTML = text; 
+
+console.clear();
+
+const $cards = document.querySelector(".cards");
+console.log($cards);
+console.log($cards.children);
+console.log($cards.children[2]);
+console.log($cards.parentElement);
+
+// firstChild es el primer nodo (incluyendo las tabulaciones)
+// console.log($cards.firstChild);
+
+// firstElementChild es el primer elemento HTML
+console.log($cards.firstElementChild);
+
+// lastElementChild es el último elemento HTML
+console.log($cards.lastElementChild);
+
+// previousElementSibling es el elementro previo al referenciado
+console.log($cards.previousElementSibling);
+// nextElementSibling es el elemento siguiente al referenciado
+console.log($cards.nextElementSibling);
+
+// closest busca el elemento más cercano de la etiqueta referenciada
+console.log($cards.closest("div"));
+console.log($cards.closest("body"));
+console.log($cards.children[3].closest("section"));
+
+console.clear();
+
+const $figure = document.createElement('figure'),
+    $image = document.createElement('img'),
+    $figcaption = document.createElement('figcaption'),
+    $figcaptionText = document.createTextNode("animals"),
+    $figure2 = document.createElement('figure');
+
+$image.setAttribute("src","https://placeimg.com/200/200/animals");
+$image.setAttribute("alt","animals");
+
+$figure.classList.add("card");
+
+$figcaption.appendChild($figcaptionText);
+$figure.appendChild($image);
+$figure.appendChild($figcaption);
+$cards.appendChild($figure);
+
+
+
+$figure2.innerHTML = `
+    <img src="https://placeimg.com/200/200/tech" alt="tech">
+    <figcaption>tech</figcaption>
+`;
+
+$figure2.classList.add("card");
+$cards.appendChild($figure2);
+
+const estaciones = ["Primavera","Verano","Otoño","Invierno"],
+        $ul = document.createElement('ul');
+
+document.write("<h3>Estaciones del año</h3>");
+
+document.body.appendChild($ul);
+
+estaciones.forEach(element =>{
+    const $li = document.createElement('li');
+    $li.textContent = element;
+    $ul.appendChild($li); 
+});
+
+const continentes = ["Africa","America","Asia","Europa","Oceania"],
+    $ul2 = document.createElement('ul');
+
+    document.write("<h3>Continentes</h3>");
+    document.body.appendChild($ul2);
+    $ul2.innerHTML = '';
+    continentes.forEach(element => {
+        $ul2.innerHTML += `<li>${element}</li>`;
+    });
+
+
+/* 
+Los fragmentos son utilizados para realizar una sola inserción al DOM y optimiza la demanda de recursos al navegador
+*/
+
+const dias = ["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"];
+
+const $ul3 = document.createElement('ul'),
+    $fragmento = document.createDocumentFragment();
+
+dias.forEach(element => {
+    const $li = document.createElement('li');
+    $li.textContent = element;
+    $fragmento.appendChild($li);
+});
+
+document.write("<h3>Días</h3>");
+$ul3.appendChild($fragmento);
+document.body.appendChild($ul3);
+
+
+console.clear();
+
+const $template = document.getElementById('template-card').content,
+    $fragment = document.createDocumentFragment(),
+    cardContent = [
+        {
+            title : "Tecnología",
+            img : "https://placeimg.com/200/200/tech" 
+        },
+        {
+            title : "Animales",
+            img : "https://placeimg.com/200/200/animals" 
+        },
+        {
+            title : "Personas",
+            img : "https://placeimg.com/200/200/people" 
+        },
+        {
+            title : "Arquitectura",
+            img : "https://placeimg.com/200/200/arch" 
+        },
+        {
+            title : "Naturaleza",
+            img : "https://placeimg.com/200/200/nature" 
+        }
+    ]
+    ;
+
+    
+    cardContent.forEach(element => {
+        $template.querySelector("img").setAttribute("src",element.img);
+        $template.querySelector("img").setAttribute("alt",element.title);
+        $template.querySelector("figcaption").textContent = element.title;
+
+        let $clone = document.importNode($template, true);
+        $fragment.appendChild($clone);
+    });
+
+    $cards.appendChild($fragment);
+
+
+    console.clear();
+
+    const $newCard = document.createElement('figure'),
+    // Clonar elementos
+        $cloneCards = $cards.cloneNode(true);
+
+    $newCard.innerHTML = `
+        <img src="https://placeimg.com/200/200/any" alt="any">
+        <figcaption>any</figcaption>
+    `;
+
+    $newCard.classList.add("card");
+    // Reemplazar un elemento
+    // $cards.replaceChild($newCard,$cards.children[2]);
+
+    // insertar antes de un elemento
+    // $cards.insertBefore($newCard,$cards.firstElementChild);
+
+    // Eliminar un elemento
+    // $cards.removeChild($cards.lastElementChild);
+
+    document.body.appendChild($cloneCards);
+
+    console.clear();
+
+    /*
+    insertAdjacent
+        .insertAdjacentElement(position, element)
+        .insertAdjacentHTML(position, html)
+        .insertAdjacentText(position, text)
+
+    Posiciones
+        beforebegin(hermano anterior)
+        afterbegin(primer hijo)
+        beforeend(ultimo hijo)
+        afteredn(hermano siguiente)
+    */
+
+    $newCard.innerHTML = `
+        <img src="https://placeimg.com/200/200/any" alt="any">
+        <figcaption>any</figcaption>    
+    `;
+
+    $newCard.classList.add("card");
+
+    $cards.insertAdjacentElement("beforebegin",$newCard);
+    $cards.insertAdjacentElement("afterbegin",$newCard);
+    $cards.insertAdjacentElement("beforeend",$newCard);
+    $cards.insertAdjacentElement("afterend",$newCard);
+
+    // let $contentCard = `
+    //     <img src="https://placeimg.com/200/200/any" alt="any">
+    //     <figcaption></figcaption>
+    // `;
+    
+    // $newCard.insertAdjacentHTML("beforeend",$contentCard);
+    // $newCard.querySelector("figcaption").insertAdjacentText("afterbegin","ANY")
+    // $cards.insertAdjacentElement("afterbegin",$newCard);
+
+    $cards.prepend($newCard);
+    $cards.before($newCard);
+    $cards.append($newCard);
+    $cards.after($newCard);
+
+
+    /* Eventos */
+    function holaMundo(){
+        alert("Hola mundo");
+        console.log(event);
+    }
+
+    const $eventoSemantico = document.getElementById('evento-semantico');
+    
+    // En los eventos semánticos no es necesario colocar los parentesis de las funciones
+    // En los eventos semánticos, por cada evento solo se puede asignar una función, y solos se pueden recibir el parametro event
+    $eventoSemantico.onclick = holaMundo;
+    $eventoSemantico.onclick = function(e) {
+        alert("Manejador de eventos semánticos");
+        console.log(e);
+    };
+
+
+    const $eventoMultiple = document.getElementById('evento-multiple');
+
+    $eventoMultiple.addEventListener('click',holaMundo); 
+    $eventoMultiple.addEventListener('click',(e)=>{
+        alert("Manejador de eventos multiples");
+        console.log(e);
+        console.log(e.type);
+        console.log(e.target);
+        console.log(event);
+    }); 
+
+
+
+
+
+
+    function saludar (nombre = "Desconocido"){
+        alert(`Hola ${nombre}`);
+        console.log(event);
+    }
+
+    $eventoMultiple.addEventListener('click',saludar);
+    $eventoMultiple.addEventListener('click',()=>{
+        saludar();
+        saludar("Raziel");
+    });
+
+
+    const $eventoRemover = document.getElementById('evento-remover');
+
+
+    const removerDobleClick = (evt) => {
+        alert(`Removiendo el evento de tipo ${evt.type}`);
+        console.log(evt);
+        $eventoRemover.removeEventListener('dblclick',removerDobleClick);
+        $eventoRemover.disabled = true;
+    }
+
+    $eventoRemover.addEventListener('dblclick',removerDobleClick);
