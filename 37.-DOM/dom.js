@@ -461,3 +461,153 @@ const $template = document.getElementById('template-card').content,
     }
 
     $eventoRemover.addEventListener('dblclick',removerDobleClick);
+
+
+    // Flujo de eventos
+    /* Fase de burbuja */
+
+
+    function flujoEventos(evt){
+        console.log(`Hola te saluda ${this}, el clic lo originó ${evt.target.className}`);
+    }
+
+    // const $divsEventos = document.querySelectorAll('.eventos-flujo div');
+    // console.log($divsEventos);
+
+    document.addEventListener('click',(evt)=>{
+        console.log(`Click en ${evt.target}`);
+
+        if (evt.target.matches(".eventos-flujo div")) {
+            flujoEventos(evt);    
+        }
+
+        if (evt.target.matches('.eventos-flujo a')) {
+            alert("Hola mundo");
+            evt.preventDefault();   
+        }
+    });
+
+/*
+
+    $divsEventos.forEach(div => {
+        // Fase de burbuja
+        div.addEventListener('click',flujoEventos);
+        // div.addEventListener('click',flujoEventos, false );
+        
+        // Fase de captura
+        // div.addEventListener('click',flujoEventos, true );
+        
+        // div.addEventListener('click',flujoEventos,{
+        //     capture : false,
+        //     once : true
+        // });
+    });
+*/
+/*
+    const $linkEventos = document.querySelector('.eventos-flujo a');
+*/
+/*
+    $linkEventos.addEventListener('click',evt=>{
+        alert("Hola mundo");
+        evt.preventDefault();
+        evt.stopPropagation();
+    })
+*/
+
+
+/* BOM */
+
+window.addEventListener('resize',evt => {
+    // console.clear();
+    console.log("Evento resize");
+    console.log(window.innerWidth);
+    console.log(window.innerHeight);
+    console.log(window.outerWidth);
+    console.log(window.outerHeight);
+});
+
+window.addEventListener('scroll', (evt) =>{
+    // console.clear();
+    // console.log("Evento scroll");
+    // console.log(window.scrollX);
+    // console.log(window.scrollY);    
+});
+
+/*
+
+Es más eficiente "DOMContentLoaded" que "load"
+
+*/
+
+window.addEventListener('load',evt =>{
+    // console.log("Evento load");
+    // console.log(window.screenX);
+    // console.log(window.screenY);
+});
+
+document.addEventListener('DOMContentLoaded', (evt)=>{
+    // console.log("Evento DOMContentLoaded");
+    // console.log(window.screenX);
+    // console.log(window.screenY);
+});
+
+
+
+const $btnAbrir = document.getElementById('abrir-ventana'),
+    $btnCerrar = document.getElementById('cerrar-ventana'),
+    $btnImprimir = document.getElementById('imprimir-ventana');
+
+    let ventana;
+
+    $btnAbrir.addEventListener('click',(evt)=>{
+        ventana = open("https://www.google.com");
+    });
+    $btnCerrar.addEventListener('click',(evt)=>{
+        // close();
+        ventana.close();
+    });
+    $btnImprimir.addEventListener('click',(evt)=>{
+        print();
+    });
+
+
+
+    console.clear();
+
+    console.log("Objeto URL (location)");
+    console.log(location);
+    console.log(location.origin);
+    console.log(location.protocol);
+    console.log(location.host);
+    console.log(location.hostname);
+    console.log(location.port);
+    console.log(location.href);
+    console.log(location.hash); //Detecta el valor de la URL después de un #
+    console.log(location.search); //Muestra los valores que se envian por la URL
+    console.log(location.pathname);
+    // location.reload();
+
+    console.log("Objeto historial (history");
+    console.log(history);
+    console.log(history.length);
+    // console.log(history.back(2)); no lleva a la página anterior (visitadas)
+    // console.log(history.forward(3)); no lleva a la página anterior (visitadas)
+
+
+    /*
+    Nos lleva a la página que deseamos (dependiendo del historial de navegación)
+        console.log(history.go(3));
+        console.log(history.go(-2));
+    */
+
+    console.log("Objeto navegador (navigator");
+    console.log(navigator);
+    console.log(navigator.connection);
+    console.log(navigator.geolocation);
+    console.log(navigator.mediaDevices);
+    console.log(navigator.mimeTypes);
+    console.log(navigator.onLine);
+    console.log(navigator.serviceWorker);
+    console.log(navigator.storage);
+    console.log(navigator.usb);
+    console.log(navigator.userAgent);
