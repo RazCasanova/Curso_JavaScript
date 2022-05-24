@@ -11,24 +11,40 @@
     <header>
         <h1>Ejercicios practicos DOM</h1>
     </header>
-    <nav class="menu translate-n-100">
-        <a href="#seccion-1">Sección 1</a>
-        <a href="#seccion-2">Sección 2</a>
-        <a href="#seccion-3">Sección 3</a>
-        <a href="#seccion-4">Sección 4</a>
-    </nav>
+    <aside>
+        <nav class="menu translate-n-100">
+            <a href="#seccion-1">Reloj digital y alarma sonora</a>
+            <a href="#seccion-2">Eventos del teclado</a>
+            <a href="#seccion-3">Sección 3</a>
+            <a href="#seccion-4">Sección 4</a>
+        </nav>
+    </aside>
     <article>
-        <section>
-            <h2 id="seccion-1">Sección 1</h2>
+        <section id="seccion-1" class="section">
+            <h2>Reloj digital y alarma sonora</h2>
+            <div class="panel-reloj">
+                <h4 class="reloj"></h4>
+            </div>
+            <div class="panel-audio">
+                <audio class="alarma" src="audio/Serenade_No_13.mp3" preload></audio>
+            </div>
+            <button class="iniciar-reloj">Iniciar Reloj</button>
+            <button class="detener-reloj">Detener Reloj</button>
+            <button class="iniciar-alarma">Iniciar Alarma</button>
+            <button class="detener-alarma">Detener Alarma</button>
         </section>
-        <section>
-            <h2 id="seccion-2">Sección 2</h2>
+        <section id="seccion-2" class="section">
+            <h2>Eventos del teclado</h2>
+            <div class="panel-teclado">
+                <div class="circulo">
+                </div>
+            </div>
         </section>
-        <section>
-            <h2 id="seccion-3">Sección 3</h2>
+        <section id="seccion-3" class="section">
+            <h2>Sección 3</h2>
         </section>
-        <section>
-            <h2 id="seccion-4">Sección 4</h2>
+        <section id="seccion-4" class="section">
+            <h2>Sección 4</h2>
         </section>
     </article>
     <a href="../index.html">🏠</a>

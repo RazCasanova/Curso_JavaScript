@@ -1,10 +1,16 @@
 import {burger_menu as bm} from './burger_menu.js';
+import alarma from './alarma.js';
+import {moverPelota} from './teclado.js';
 
-const $btn_menu = document.querySelector('.burger-menu');
+const $btn_menu = document.querySelector('.burger-menu')
 const $menu = document.querySelector('.menu');
+const $reloj = document.querySelector('.reloj');
+const $sonido = document.querySelector('.alarma');
 
-// console.log($btn_menu.querySelectorAll('span')[0]);
+const $circulo = document.querySelector('.circulo');
 
-$btn_menu.addEventListener('click',(evt)=>{
-    bm.menu($menu, $btn_menu.querySelectorAll('span'));
+document.addEventListener('DOMContentLoaded',(evt)=>{
+    bm.menu($menu,$btn_menu,'.menu a');
+    alarma($reloj, $sonido);
+    moverPelota($circulo);
 });
