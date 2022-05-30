@@ -175,3 +175,29 @@ header h1{
 .btn-scroll-top:hover span{
     color: var(--main-color);
 }
+
+.dark-mode{
+    background-color: var(--second-color);
+    color: var(--main-color);
+}
+
+.btn-dark-mode{
+    position: fixed;
+    background-color: var(--main-color);
+    width: 4rem;
+    height: 4rem;
+    left: 1rem;
+    bottom: 1rem;
+    border-radius: 50%;
+    border: 0;
+    cursor: pointer;
+    transition: background-color 300ms ease-in-out;
+}
+
+.btn-dark-mode:hover{
+    background-color: var(--second-color);
+}
+
+.btn-dark-mode span{
+    font-size: 1.5rem;
+}
