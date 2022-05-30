@@ -142,3 +142,36 @@ header h1{
     border-radius: 50%;
     background-color: var(--main-color);
 }
+
+.btn-scroll-top{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-color);
+    width: 4rem;
+    height: 4rem;
+    position: fixed;
+    bottom: 1rem;
+    right: 5.2rem;
+    border-radius: 50%;
+    z-index: 98;
+    transition: opacity 300ms ease-in, background-color 300ms ease-in-out;
+    opacity: 0;
+    border: 0;
+
+}
+
+.btn-scroll-top span{
+    font-size: 2rem;
+    font-weight: bold;
+    transition: color 300ms ease-in-out;
+}
+
+.btn-scroll-top:hover{
+    cursor: pointer;
+    background-color: var(--second-color);
+}
+.btn-scroll-top:hover span{
+    color: var(--main-color);
+}
