@@ -201,3 +201,15 @@ header h1{
 .btn-dark-mode span{
     font-size: 1.5rem;
 }
+
+.formularioTester{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.formularioTester *{
+    margin-bottom: .5rem;
+}
