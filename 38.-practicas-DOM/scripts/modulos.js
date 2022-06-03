@@ -9,6 +9,7 @@ import responsiveTester from './responsive_tester.js';
 import userAgentInfo from './deteccion_dispositivos.js';
 import conexionARed from './conexion_red.js';
 import videoCamara from './camara.js';
+import geolocalizacion from './geolocalizacion.js';
 
 const $btn_menu = document.querySelector('.burger-menu')
 const $menu = document.querySelector('.menu');
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded',(evt)=>{
     userAgentInfo('user-device');
     conexionARed();
     videoCamara('.video');
+    geolocalizacion('.datos-geolocalizacion');
 });
 /* No es posible invocar un evento de un mismo tipo detro de otro, por lo que es necesario mover la invocación de la función fuera del evento */
 modoOscuro('.btn-dark-mode', 'dark-mode');
