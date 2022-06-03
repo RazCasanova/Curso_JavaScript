@@ -57,13 +57,14 @@ header h1{
     left: 0;
     bottom: 0;
     right: 0;
+    overflow-y: scroll;
     text-align: center;
     z-index: 98;
     transition: transform .3s ease;
 }
 
 .menu a{
-    padding: 2rem;
+    padding: 1rem;
     display: block;
     width: 100%;
     text-decoration: none;
