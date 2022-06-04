@@ -253,3 +253,8 @@ header h1{
     opacity: 0;
     order: 1;
 }
+
+.listado li:nth-child(odd){
+    background-color: var(--second-color);
+    color: var(--main-color);
+}
