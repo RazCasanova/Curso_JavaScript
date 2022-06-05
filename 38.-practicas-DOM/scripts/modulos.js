@@ -12,6 +12,7 @@ import videoCamara from './camara.js';
 import geolocalizacion from './geolocalizacion.js';
 import filtroBusqueda from './busqueda.js';
 import sorteo from './sorteo.js';
+import slider from './carrusel.js';
 
 const $btn_menu = document.querySelector('.burger-menu')
 const $menu = document.querySelector('.menu');
@@ -31,7 +32,8 @@ document.addEventListener('DOMContentLoaded',(evt)=>{
     videoCamara('.video');
     geolocalizacion('.datos-geolocalizacion');
     filtroBusqueda('.card','#filtro');
-    sorteo('.listado', '.btn_generar_sorteo')
+    sorteo('.listado', '.btn_generar_sorteo');
+    slider();
 });
 /* No es posible invocar un evento de un mismo tipo detro de otro, por lo que es necesario mover la invocación de la función fuera del evento */
 modoOscuro('.btn-dark-mode', 'dark-mode');
