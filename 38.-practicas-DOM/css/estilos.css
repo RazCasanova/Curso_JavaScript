@@ -40,7 +40,7 @@ header{
     color: var(--second-color);
     text-align: center;
     font-size: 1.5rem;
-    z-index: 999;
+    z-index: 98;
 }
 
 header h1{
@@ -70,11 +70,11 @@ header h1{
     width: 100%;
     text-decoration: none;
     color: var(--main-color);
-    font-size: 2rem;
     transition: all 0.3s ease;
 }
 
-.menu a:hover{
+.menu a:hover,
+.menu a.active{
     font-weight: bold;
     background-color: var(--main-modal-color);
     color: var(--second-color);
@@ -319,4 +319,54 @@ header h1{
 .slider a:hover{
     background-color: var(--main-color);
     color: var(--second-color);
+}
+
+@media screen and (min-width: 800px) {
+    body{
+        display: grid;
+        grid-template-columns: 80% 20%;
+        grid-template-rows: 4rem auto;
+        grid-template-areas: 
+        "header header"
+        "main panel"
+        ;
+    }
+
+    main{
+        grid-area: main;
+    }
+
+    header{
+        grid-area: header;
+    }
+
+    aside{
+        grid-area: panel;
+        position: sticky;
+        top: 4rem;
+        transform: translate(0,0);
+    }
+
+    .menu{
+        position: sticky;
+        align-self: flex-start;
+        justify-content: flex-start;
+        top: 4rem;
+        transform: translate(0,0);
+        text-align: right;
+        overflow-y: hidden;
+    }
+
+    .menu a{
+        font-size: 1rem;
+    }
+
+    .burger-menu{
+        display: none;
+    }
+
+    .btn-scroll-top{
+        left: 5.5rem;
+    }
+    
 }
