@@ -47,6 +47,10 @@ header h1{
     margin: 0;
 }
 
+video{
+    width: 90%;
+}
+
 .menu{
     display: flex;
     flex-direction: column;
