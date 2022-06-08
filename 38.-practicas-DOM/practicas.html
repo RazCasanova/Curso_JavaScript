@@ -26,6 +26,7 @@
             <a href="#seccion-11">Sorteo</a>
             <a href="#seccion-12">Responsive slider</a>
             <a href="#seccion-13">Video inteligente</a>
+            <a href="#seccion-14">Formulario de contacto</a>
         </nav>
     </aside>
     <article>
@@ -161,6 +162,18 @@
         <section id="seccion-13" class="section" data-scroll-spy>
             <h2>Video inteligente</h2>
             <video class="video-inteligente" src="media/VIDEO0149.mp4" data-video controls muted loop></video>
+        </section>
+
+        <section id="seccion-14" class="section" data-scroll-spy>
+            <h2>Formulario de contacto</h2>
+            <h3>Envianos tus comentarios</h3>
+            <form id="formulario_contacto" class="formulario_contacto">
+                <input type="text" name="nombre" id="nombre" placeholder="Escribe tu nombre" pattern="^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$" title="Nombre invalido" required>
+                <input type="email" name="email" id="email" placeholder="Escribe tu email" pattern="[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})" title="Email invalido" required>
+                <input type="text" name="asunto" id="asunto" placeholder="Escribe el asunto"  title="Asunto invalido" required>
+                <textarea name="comentarios" id="comentarios" cols="30" rows="10" data-pattern="^.{1,255}$" title="Comentario con 0 o con más de 255 caracteres" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
         </section>
     </article>
     <a href="../index.html">🏠</a>

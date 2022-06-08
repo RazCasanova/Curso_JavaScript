@@ -374,3 +374,50 @@ video{
     }
     
 }
+
+.valid{
+    border: 1px solid #42db2e;
+}
+
+.invalid{
+    border: 1px solid #db2e2e;
+}
+
+.formulario_contacto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.formulario_contacto input,
+.formulario_contacto textarea{
+    font-size: 1rem;
+    margin-top: .5rem;
+    padding: .5rem;
+    resize: none;
+}
+
+.formulario_contacto input:focus{
+    border-style: none;
+}
+
+.formulario_contacto button{
+    width: 50%;
+    font-size: 1rem;
+    padding: .5rem;
+    margin-top: .5rem;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}
+
+.formulario_contacto span{
+    background-color: #db2e2e;
+    color: #fff;
+    padding: .5rem;
+}
+
+.none{
+    display: none;
+}
+

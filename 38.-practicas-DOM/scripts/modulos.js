@@ -15,6 +15,7 @@ import sorteo from './sorteo.js';
 import slider from './carrusel.js';
 import scrollspy from './scrollspy.js';
 import vidIntelligent from './video_inteligente.js';
+import validarFormulario from './formulario_contacto.js';
 
 const $btn_menu = document.querySelector('.burger-menu')
 const $menu = document.querySelector('.menu');
@@ -37,7 +38,8 @@ document.addEventListener('DOMContentLoaded',(evt)=>{
     sorteo('.listado', '.btn_generar_sorteo');
     slider();
     scrollspy();
-    vidIntelligent('.video-inteligente')
+    vidIntelligent('.video-inteligente');
+    validarFormulario();
 });
 /* No es posible invocar un evento de un mismo tipo detro de otro, por lo que es necesario mover la invocación de la función fuera del evento */
 modoOscuro('.btn-dark-mode', 'dark-mode');
