@@ -1,0 +1,46 @@
+{
+  "dragones": [
+    {
+      "id": 1,
+      "nombre": "Dragón Blanco de Ojos Azules",
+      "atributo": "Luz"
+    },
+    {
+      "id": 2,
+      "nombre": "Dragón Brillante de Ojos Azules",
+      "tipo": "Luz"
+    },
+    {
+      "id": 3,
+      "nombre": "Dragón Negro de Ojos Rojos",
+      "tipo": "Oscuridad"
+    },
+    {
+      "id": 4,
+      "nombre": "Dragón Menor",
+      "tipo": "Viento"
+    },
+    {
+      "id": 5,
+      "nombre": "Dragón de Coral",
+      "tipo": "Agua"
+    }
+  ],
+  "dioses": [
+    {
+      "id": 1,
+      "nombre": "Slifer el Dragón del Cielo",
+      "atributo": "Divinidad"
+    },
+    {
+      "id": 2,
+      "nombre": "Obelisco el Atormentador",
+      "atributo": "Divinidad"
+    },
+    {
+      "id": 3,
+      "nombre": "El Dragón Alado de Ra",
+      "atributo": "Divinidad"
+    }
+  ]
+}
