@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD API REST Axios</title>
+</head>
+<body>
+    <h1>CRUD API REST Axios</h1>
+    <section class="crud">
+        <article>
+            <h2 class="crud-title">Agregar Criatura</h2>
+            <form class="crud-form">
+                <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+                <input type="text" name="atributo" id="atributo" placeholder="Atributo" required>
+                <input type="submit" value="Enviar">
+                <input type="hidden" name="id">
+            </form>
+        </article>
+        <article>
+            <h2>Ver Criaturas</h2>
+            <table class="crud-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Atributo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </article>
+    </section>
+    <template id="crud-template">
+        <tr>
+            <td class="name"></td>
+            <td class="attrib"></td>
+            <td>
+                <button class="edit">Editar</button>
+                <button class="delete">Eliminar</button>
+            </td>
+        </tr>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const 
+            $table = document.querySelector('.crud-table'),
+            $form = document.querySelector('.crud-form'),
+            $title = document.querySelector('.crud-title'),
+            $template = document.getElementById('crud-template').content,
+            $fragment = document.createDocumentFragment();
+
+            document.addEventListener('DOMContentLoaded',() =>{getData()});
+            document.addEventListener('submit',(evt)=>{
+                if (evt.target === $form) {
+                    evt.preventDefault();
+                    if (!evt.target.id.value) {
+                        postData(evt);    
+                    }
+
+                    if (evt.target.id.value) {
+                        putData(evt);
+                    }
+                }
+            });
+
+            document.addEventListener('click',(evt)=>{
+                if (evt.target.matches('.edit')) {
+                    $form.id.value = evt.target.dataset.id;
+                    $form.nombre.value = evt.target.dataset.name;
+                    $form.atributo.value = evt.target.dataset.attrib;
+                }
+                if (evt.target.matches('.delete')) {
+                    let isDelete = confirm(`¿Desea elimiar el registro ${evt.target.dataset.id} ?`);
+                    if (isDelete) {
+                        deleteData(evt);
+                    }
+                }
+            });
+
+            async function getData() {
+                try {
+                    let respuesta = await axios.get("http://localhost:5555/dragones");
+                    let json = await respuesta.data;
+                    console.log(json);
+                    json.forEach(element => {
+                        $template.querySelector('.name').textContent = `${element.nombre}`;
+                        $template.querySelector('.attrib').textContent = `${element.atributo}`;
+                        $template.querySelector('.edit').dataset.id = `${element.id}`;
+                        $template.querySelector('.edit').dataset.name = `${element.nombre}`;
+                        $template.querySelector('.edit').dataset.attrib = `${element.atributo}`;
+                        $template.querySelector('.delete').dataset.id = `${element.id}`;
+                        let $clone = document.importNode($template, true);
+                        $fragment.appendChild($clone);
+                    });
+                    $table.appendChild($fragment);
+                    
+                } catch (error) {
+                    $table.insertAdjacentHTML('afterend',`<p>${error}</p>`)
+                }
+            }
+
+            /* Opción 1 */
+
+/*
+            async function postData(evt) {
+                try {
+                    let respuesta = await axios.post("http://localhost:5555/dragones",{
+                        nombre : evt.target.nombre.value,
+                        atributo : evt.target.atributo.value
+                    });
+                    location.reload();    
+                } catch (error) {
+                    $form.insertAdjacentHTML('afterend',`<p>${error}</p>`)
+                }
+            }
+
+            async function putData(evt) {
+                try {
+                    let respuesta = await axios.put("http://localhost:5555/dragones/"+evt.target.id.value,{
+                        nombre : evt.target.nombre.value,
+                        atributo : evt.target.atributo.value
+                    });
+                    location.reload();
+                } catch (error) {
+                    $form.insertAdjacentHTML('afterend',`${error}`);
+                }
+            }
+
+            async function deleteData(evt) {
+                try {
+                    let respuesta = await axios.delete("http://localhost:5555/dragones/"+evt.target.dataset.id);
+                    location.reload();
+                } catch (error) {
+                    $form.insertAdjacentHTML('afterend',`<p>${error}</p>`);
+                }
+
+            }
+*/
+
+            /* Opción 2 */
+            async function postData(evt) {
+                try {
+                    let options = {
+                        method : "POST",
+                        headers : {"Content-type": "application/json; charset=utf-8"},
+                        data : JSON.stringify({
+                            nombre : evt.target.nombre.value,
+                            atributo : evt.target.atributo.value
+                        })
+                    }
+                    let respuesta = await axios("http://localhost:5555/dragones",options);
+                    location.reload();    
+                } catch (error) {
+                    $form.insertAdjacentHTML('afterend',`<p>${error}</p>`)
+                }
+            }
+
+            async function putData(evt) {
+                try {
+                    let options = {
+                        method : "PUT",
+                        headers : {"Content-type": "application/json; charset=utf-8"},
+                        data : JSON.stringify({
+                            nombre : evt.target.nombre.value,
+                            atributo : evt.target.atributo.value
+                        })
+                    }
+                    let respuesta = await axios("http://localhost:5555/dragones/"+evt.target.id.value,options);
+                    location.reload();
+                } catch (error) {
+                    $form.insertAdjacentHTML('afterend',`${error}`);
+                }
+            }
+
+            async function deleteData(evt) {
+                try {
+                    let options = {
+                        method : "DELETE",
+                        headers : {"Content-type": "application/json; charset=utf-8"}
+                    }
+                    let respuesta = await axios("http://localhost:5555/dragones/"+evt.target.dataset.id,options);
+                    location.reload();
+                } catch (error) {
+                    $form.insertAdjacentHTML('afterend',`<p>${error}</p>`);
+                }
+
+            }
+
+    </script>
+</body>
+</html>

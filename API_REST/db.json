@@ -1,0 +1,24 @@
+{
+  "dragones": [
+    {
+      "id": "1",
+      "nombre": "Dragón Blanco de Ojos Azules",
+      "atributo": "Luz"
+    },
+    {
+      "nombre": "Bebe Dragón",
+      "atributo": "Viento",
+      "id": "kG2X3W7"
+    },
+    {
+      "nombre": "Dragón Negro de Ojos Rojos",
+      "atributo": "Oscuridad",
+      "id": "itDIZ4C"
+    },
+    {
+      "nombre": "Dragón Tirano",
+      "atributo": "Fuego",
+      "id": "jnaXUei"
+    }
+  ]
+}

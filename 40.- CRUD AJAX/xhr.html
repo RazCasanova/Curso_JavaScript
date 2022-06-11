@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD API REST XMLHTTPRequest</title>
+</head>
+<body>
+    <h1>CRUD API REST XMLHTTPRequest</h1>
+    <section class="crud">
+        <article>
+            <h2 class="crud-title">Agregar Criatura</h2>
+            <form class="crud-form">
+                <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+                <input type="text" name="atributo" id="atributo" placeholder="Atributo" required>
+                <input type="submit" value="Enviar">
+                <input type="hidden" name="id">
+            </form>
+        </article>
+        <article>
+            <h2>Ver Criaturas</h2>
+            <table class="crud-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Atributo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </article>
+    </section>
+    <template id="crud-template">
+        <tr>
+            <td class="name"></td>
+            <td class="attrib"></td>
+            <td>
+                <button class="edit">Editar</button>
+                <button class="delete">Eliminar</button>
+            </td>
+        </tr>
+    </template>
+
+    <script>
+        const 
+            $table = document.querySelector('.crud-table'),
+            $form = document.querySelector('.crud-form'),
+            $title = document.querySelector('.crud-title'),
+            $template = document.getElementById('crud-template').content,
+            $fragment = document.createDocumentFragment();
+
+            
+        const ajax = (options) =>{
+            let {url, method, success, error, data} = options;
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.addEventListener('readystatechange',(evt)=>{
+                if (xhr.readyState !== 4) return;
+
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    let json = JSON.parse(xhr.responseText);
+                    // console.log(json);
+                    success(json);
+                }else{
+                    let message = xhr.statusText || "Ocurrio un error";
+                    $table.insertAdjacentHTML('afterend',`<p>Error ${xhr.status} ${message}</p>`)
+                }
+            });
+            xhr.open(method,url);
+            xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+            xhr.send(JSON.stringify(data));
+        }
+
+
+        const getData = () =>{
+            ajax({
+                url : "http://localhost:5555/dragones",
+                method : "GET",
+                success : (respuesta) =>{
+                    respuesta.forEach(element => {
+                        $template.querySelector('.name').textContent = `${element.nombre}`;    
+                        $template.querySelector('.attrib').textContent = `${element.atributo}`;
+                        $template.querySelector('.edit').dataset.id = `${element.id}`;    
+                        $template.querySelector('.edit').dataset.name = `${element.nombre}`;    
+                        $template.querySelector('.edit').dataset.attrib = `${element.atributo}`;    
+                        $template.querySelector('.delete').dataset.id = `${element.id}`;
+                        let $clone = document.importNode($template, true);
+                        $fragment.appendChild($clone);    
+                    });
+                    $table.querySelector('tbody').appendChild($fragment);
+                },
+                error : (err)=>{
+                    $table.insertAdjacentHTML('afterend',`<p>${err}</p>`);
+                }
+            })
+        }
+
+        document.addEventListener('DOMContentLoaded',() => getData());
+
+
+        document.addEventListener('submit',(evt)=>{
+            if (evt.target === $form) {
+                evt.preventDefault();
+                /* POST */
+                if (!evt.target.id.value) {
+                    ajax({
+                        url : "http://localhost:5555/dragones",
+                        method : "POST",
+                        success : (respuesta)=>location.reload(),
+                        error : (err) => {
+                            $form.insertAdjacentHTML('afterend',`<p>${err}</p>`)
+                        },
+                        data : {
+                                nombre : evt.target.nombre.value,
+                                atributo :  evt.target.atributo.value
+                            }
+                    });    
+                }
+
+                /* PUT */
+                if (evt.target.id.value) {
+                    ajax({
+                        url : "http://localhost:5555/dragones/"+evt.target.id.value,
+                        method : "PUT",
+                        success : (respuesta)=>location.reload(),
+                        error : (err) => {
+                            $form.insertAdjacentHTML('afterend',`<p>${err}</p>`)
+                        },
+                        data : {
+                                nombre : evt.target.nombre.value,
+                                atributo :  evt.target.atributo.value
+                            }
+                    });
+                }
+            }
+        })
+
+        document.addEventListener('click',(evt)=>{
+            if (evt.target.matches('.edit')) {
+                $form.id.value = evt.target.dataset.id;
+                $form.nombre.value = evt.target.dataset.name;
+                $form.atributo.value = evt.target.dataset.attrib;
+            }
+
+            if (evt.target.matches('.delete')) {
+                console.log(evt.target);
+                let isDelete = confirm(`¿Desea elimiar el registro ${evt.target.dataset.id} ?`);
+                if (isDelete) {
+                    ajax({
+                            url : "http://localhost:5555/dragones/"+evt.target.dataset.id,
+                            method : "DELETE",
+                            success : (respuesta)=>location.reload(),
+                            error : (err) => {
+                                alert(`Ocurrio un error : <p>${err}</p>`);
+                            }
+                        });
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
