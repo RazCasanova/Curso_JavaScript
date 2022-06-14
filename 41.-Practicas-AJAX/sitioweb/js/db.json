@@ -1,0 +1,37 @@
+{
+    "inicio" : [
+        {
+            "id" : "1",
+            "encabezado" : "Contenido de la sección Inicio",
+            "contenido" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, molestias? Natus error minima possimus sed sit. Dolorum, eius architecto quos labore vero tempora dolor natus quaerat aspernatur veritatis quae et! ",
+            "ilustracion" : "https://placeimg.com/600/400/tech"
+        }
+    ],
+
+    "acerca" : [
+        {
+            "id" : "1",
+            "encabezado" : "Contenido de la sección Acerca",
+            "contenido" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, molestias? Natus error minima possimus sed sit. Dolorum, eius architecto quos labore vero tempora dolor natus quaerat aspernatur veritatis quae et! ",
+            "ilustracion" : "https://placeimg.com/600/400/animals"
+        }
+    ],
+    
+    "servicios" : [
+        {
+            "id" : "1",
+            "encabezado" : "Contenido de la sección Servicios",
+            "contenido" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, molestias? Natus error minima possimus sed sit. Dolorum, eius architecto quos labore vero tempora dolor natus quaerat aspernatur veritatis quae et! ",
+            "ilustracion" : "https://placeimg.com/600/400/nature"
+        }
+    ],
+    
+    "contacto" : [
+        {
+            "id" : "1",
+            "encabezado" : "Contenido de la sección Contacto",
+            "contenido" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, molestias? Natus error minima possimus sed sit. Dolorum, eius architecto quos labore vero tempora dolor natus quaerat aspernatur veritatis quae et! ",
+            "ilustracion" : "https://placeimg.com/600/400/people"
+        }
+    ]
+}
