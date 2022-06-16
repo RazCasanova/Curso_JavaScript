@@ -1,0 +1,87 @@
+html{
+    font-family: sans-serif;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    overflow-x: hidden;
+}
+
+*,
+*::after,
+*::before{
+    box-sizing: inherit;
+}
+
+.container{
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.valid{
+    border: 1px solid #42db2e;
+}
+
+.invalid{
+    border: 1px solid #db2e2e;
+}
+
+.formulario_contacto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.formulario_contacto input,
+.formulario_contacto textarea{
+    font-size: 1rem;
+    margin-top: .5rem;
+    padding: .5rem;
+    resize: none;
+}
+
+.formulario_contacto input:focus{
+    border-style: none;
+}
+
+.formulario_contacto button{
+    width: 50%;
+    font-size: 1rem;
+    padding: .5rem;
+    margin-top: .5rem;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}
+
+.formulario_contacto span{
+    background-color: #db2e2e;
+    color: #fff;
+    padding: .5rem;
+}
+
+.none{
+    display: none;
+}
+
+.loader{
+    margin: 1rem auto;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 5px solid #222;
+    border-left-color: #F7DF1E;
+    animation: spinner 1s ease-in-out infinite;
+}
+
+@keyframes spinner{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}

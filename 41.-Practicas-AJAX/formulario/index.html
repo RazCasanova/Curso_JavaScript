@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario con Fetch</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body>
+    <h1>Formulario con Fetch</h1>
+    <section class="container">
+      <form id="formulario_contacto" class="formulario_contacto">
+        <input
+          type="text"
+          name="nombre"
+          id="nombre"
+          placeholder="Escribe tu nombre"
+          pattern="^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$"
+          title="Nombre invalido"
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Escribe tu email"
+          pattern="[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})"
+          title="Email invalido"
+          required
+        />
+        <input
+          type="text"
+          name="asunto"
+          id="asunto"
+          placeholder="Escribe el asunto"
+          title="Asunto invalido"
+          required
+        />
+        <textarea
+          name="comentarios"
+          id="comentarios"
+          cols="30"
+          rows="10"
+          data-pattern="^.{1,255}$"
+          title="Comentario con 0 o con más de 255 caracteres"
+          required
+        ></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+      <div class="loader none"></div>
+      <h2 class="respuesta none">Los datos han sido enviados</h2>
+    </section>
+    <script>
+      document.addEventListener("DOMContentLoaded", (evt) => {
+        validarFormulario();
+      });
+
+      function validarFormulario() {
+        const $formulario = document.getElementById("#formulario_contacto");
+        const $inputs = document.querySelectorAll(
+          "#formulario_contacto [required]"
+        );
+
+        $inputs.forEach((element) => {
+          const $span = document.createElement("span");
+          $span.id = element.name;
+          $span.textContent = `${element.title}`;
+          $span.classList.add("none");
+          element.insertAdjacentElement("afterend", $span);
+        });
+
+        document.addEventListener("keyup", (evt) => {
+          if (evt.target.matches("#formulario_contacto [required]")) {
+            let $input = evt.target;
+            let pattern = $input.pattern || $input.dataset.pattern;
+
+            if (pattern && $input.value !== "") {
+              let regex = new RegExp(pattern);
+              if (regex.exec($input.value)) {
+                document
+                  .getElementById($input.name)
+                  .classList.remove("invalid");
+                document.getElementById($input.name).classList.add("valid");
+                document
+                  .querySelector(`span#${$input.name}`)
+                  .classList.add("none");
+
+                document
+                  .querySelector("#formulario_contacto button[type=submit]")
+                  .removeAttribute("disabled");
+              } else {
+                document.getElementById($input.name).classList.remove("valid");
+                document.getElementById($input.name).classList.add("invalid");
+                document
+                  .querySelector(`span#${$input.name}`)
+                  .classList.remove("none");
+
+                document
+                  .querySelector("#formulario_contacto button[type=submit]")
+                  .setAttribute("disabled", "");
+              }
+            } else {
+              document.getElementById($input.name).classList.remove("valid");
+              document.getElementById($input.name).classList.add("invalid");
+              document
+                .querySelector(`span#${$input.name}`)
+                .classList.remove("none");
+            }
+
+            if (!pattern) {
+              if ($input.value !== "") {
+                document
+                  .getElementById($input.name)
+                  .classList.remove("invalid");
+                document.getElementById($input.name).classList.add("valid");
+                document
+                  .querySelector(`span#${$input.name}`)
+                  .classList.add("none");
+                document
+                  .querySelector("#formulario_contacto button[type=submit]")
+                  .removeAttribute("disabled");
+              } else {
+                document.getElementById($input.name).classList.remove("valid");
+                document.getElementById($input.name).classList.add("invalid");
+                document
+                  .querySelector("#formulario_contacto button[type=submit]")
+                  .setAttribute("disabled", "");
+              }
+            }
+          }
+        });
+      }
+
+      document.addEventListener('submit',(evt)=>{
+        evt.preventDefault();
+        const $loader = document.querySelector('.loader');
+        const $respuesta = document.querySelector('.respuesta');
+
+        $loader.classList.remove('none');
+
+        fetch("https://formsubmt.co/ajax/f4casanovarosasraziel@gmail.com",{
+            method : "POST",
+            body : new FormData(evt.target)
+        })
+        .then((res)=> res.ok ? res.json() : Promise.reject(res))
+        .then((json)=>{
+            console.log(json);
+            $loader.classList.add('none');
+            $respuesta.classList.remove('none');
+        })
+        .catch((error)=>{
+            console.log(error);
+            let message = error.statusText || "Ocurrio un error al enviar el formulario";
+            $respuesta.innerHTML = `Error ${error.status} : ${message}`;
+            $respuesta.classList.remove('none');
+            // console.error(error);
+        })
+        .finally(()=>{
+            setTimeout(() => {
+                $loader.classList.add('none')
+                $respuesta.classList.add('none');
+                evt.target.reset();
+            }, 3000);
+        });
+
+      });
+    </script>
+  </body>
+</html>
