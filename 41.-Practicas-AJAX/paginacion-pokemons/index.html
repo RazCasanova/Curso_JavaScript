@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paginación de Pokemons</title>
+    <style>
+        .pokemons{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 80%;
+            margin: 0 auto;
+        }
+        .pokemon{
+            text-align: center;
+            border: 1px solid #000;
+            border-radius: 5px;
+            min-width: 150px;
+            margin: .5rem;
+            transition: transform .3s ease-out;
+            cursor: pointer;
+        }
+
+        .pokemon:hover{
+            transform: scale(1.1);
+        }
+
+        .paginacion{
+            width: 25%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .paginacion button{
+            font-size: 1.5rem;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+
+        }
+
+        .hidden{
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .loader{
+            width: 3vw;
+            height: 3vw;
+            border-radius: 50%;
+            border: 5px solid darkblue;
+            border-left: 5px solid darkcyan;
+            animation: spinner 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spinner {
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1>Paginación de Pokemons</h1>
+    <div class="paginacion">
+        <button class="btn btn_prev hidden">⏮</button>
+        <button class="btn btn_next">⏭</button>
+    </div>
+    <section id="pokemons" class="pokemons">
+        <template id="template-pokemons">
+            <div class="pokemon">
+                <img src="" alt="">
+                <p></p>
+            </div>
+        </template>
+    </section>
+    <script>
+        const $pokemons = document.getElementById('pokemons'),
+                $template = document.getElementById('template-pokemons').content,
+                $fragment = document.createDocumentFragment(),
+                $btn_prev = document.querySelector('.btn_prev');
+                
+        let limite = 20,offset = 0;
+
+        document.addEventListener('DOMContentLoaded',()=> APIFetch(0))
+
+        document.addEventListener('click',(evt)=>{
+            if (evt.target.matches('.btn_next')) {
+                offset += 20;
+                APIFetch(offset);
+                $btn_prev.classList.remove('hidden');
+            }
+            if (evt.target.matches('.btn_prev')) {
+                offset-=20;
+                APIFetch(offset);
+                if (offset <=0) {
+                    $btn_prev.classList.add('hidden');
+                }
+            }
+        });
+
+        async function APIFetch(offset) {
+            try {
+                $pokemons.innerHTML = `<div class="loader"></div>`;
+                let respuesta = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${limite}&offset=${offset}`,{method : 'GET'});
+                let json = await respuesta.json();
+                if (!respuesta.ok) {
+                    throw({ status : respuesta.status, statusText : respuesta.statusText || "Ocurrio un error" });
+                }
+
+                for (let i = 0; i < json.results.length; i++) {
+                    pokemonData(json.results[i].url);
+                    
+                }
+
+            } catch (error) {
+                $pokemons.innerHTML = `${error}`
+            }
+
+        }
+
+        async function pokemonData(url) {
+            $pokemons.innerHTML = '';
+            try {
+                let respuesta = await fetch(`${url}`,{method : 'GET'});
+                let json = await respuesta.json();
+                if (!respuesta.ok) {
+                    throw({ status : respuesta.status, statusText : respuesta.statusText || "Ocurrio un error" });
+                }
+
+                Array(json).forEach(element => {
+                    $template.querySelector('img').setAttribute('src', element.sprites.front_default);
+                    $template.querySelector('p').textContent = `${element.name}`;
+                    let $clone = document.importNode($template, true);
+                    $fragment.appendChild($clone);
+                });
+                $pokemons.appendChild($fragment);
+
+            } catch (error) {
+                $pokemons.innerHTML = `${error}`
+            }
+            
+        }
+
+    </script>
+</body>
+</html>
