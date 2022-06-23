@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de shows en TVMAZE</title>
+    <style>
+        .shows{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .cards-shows{
+            margin: 2%;
+            border: 1px solid #000;
+            border-radius: 5px;
+            flex: 1 1 250px;
+            text-align: center;
+        }
+
+        .loader{
+            width: 3vw;
+            height: 3vw;
+            border-radius: 50%;
+            border: 5px solid darkblue;
+            border-left: 5px solid darkcyan;
+            animation: spinner 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spinner {
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Buscador de shows en TVMAZE</h1>
+
+    <input type="search" name="input_buscar" id="input_buscar">
+
+    <section class="shows" id="shows"></section>
+        <template id="template-shows">
+            <div class="cards-shows">
+                <h3></h3>
+                <img>
+                <p></p>
+                <a></a>
+            </div>
+        </template>
+
+    <script>
+
+        const $shows = document.getElementById('shows'),
+            $template = document.getElementById('template-shows').content,
+            $fragment = document.createDocumentFragment(),
+            $input_buscar = document.getElementById('input_buscar');
+
+        document.addEventListener('keypress',(evt)=>{
+            if (evt.key === 'Enter') {
+                $shows.innerHTML = `<div class="loader"></div>`;
+                buscarShow($input_buscar.value.toLowerCase());
+            }
+        });
+
+        async function buscarShow(value) {
+            try {
+                let respuesta = await fetch('https://api.tvmaze.com/search/shows?q='+value);
+                let json = await respuesta.json();
+    
+                if (!respuesta.ok) {
+                    throw {status : respuesta.status, statusText : respuesta.statusText || "Ocurrio un error"}
+                }
+
+                if (json.length === 0) {
+                    $shows.innerHTML = `No se encontro ningun resultado`;
+                }
+
+                for (let i = 0; i < json.length; i++) {
+                    $template.querySelector('h3').textContent = `${json[i].show.name}`;
+                    $template.querySelector('img').src = `${json[i].show.image ? json[i].show.image.medium : 'https://static.tvmaze.com/images/no-img/no-img-portrait-text.png'}`;
+                    $template.querySelector('p').innerHTML = `${json[i].show.summary ? json[i].show.summary : 'Sin descripción'}`;
+                    $template.querySelector('a').href = `${json[i].show.url ? json[i].show.url : "#" }`;
+                    $template.querySelector('a').target = `${json[i].show.url ? '_blank' : '_self'}`;
+                    $template.querySelector('a').textContent = `Saber más`;
+                    let $clone = document.importNode($template, true);
+                    $fragment.appendChild($clone);
+                }
+                $shows.innerHTML = '';
+                $shows.appendChild($fragment);
+
+                
+            } catch (error) {
+                $shows.innerHTML = `Error ${error}`;
+            }
+
+        }
+    </script>
+</body>
+</html>
