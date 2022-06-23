@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de canciones</title>
+    <style>
+        .informacion{
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            width: 80%;
+            margin: 0 auto;
+        }
+        .artistas{
+            padding: 1rem;
+        }
+        .letra{
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Buscador de canciones</h1>
+    <form id="formulario">
+        <input type="search" name="input_artista" id="input-artista" required>
+        <input type="search" name="input_cancion" id="input-cancion" required>
+        <button type="submit" class="btn_enviar">Enviar</button>
+    </form>
+    <article class="informacion">
+        <section class="artistas" id="artistas">
+        </section>
+        <section class="letra" id="letra"></section>
+        <template id="template-artist">
+            <h3 class="nombre_artista"></h3>
+            <img src="" alt="">
+            <p class="anio">Anio</p>
+            <p class="pais">Pais</p>
+            <p class="genero">Genero</p>
+            <a></a>
+            <p class="descripcion">Descripcion</p>
+        </template>
+    </article>
+    <script>
+        const $formulario = document.getElementById('formulario'),
+            $artistas = document.getElementById('artistas'),
+            $template_artistas = document.getElementById('template-artist').content,
+            $letra = document.getElementById('letra'),
+            $btn_enviar = document.querySelector('btn_enviar'),
+            $fragment_artist = document.createDocumentFragment(),
+            $fragment_lyrics = document.createDocumentFragment();
+
+        document.addEventListener('submit',(evt)=>{
+            if (evt.target === $formulario) {
+                evt.preventDefault();
+                let artista = evt.target.input_artista.value,
+                    cancion = evt.target.input_cancion.value;
+                getDataArtist(artista.split(' ').join('_').toLowerCase());
+                getDataLyric(artista.toLowerCase(), cancion.toLowerCase());
+            }
+        });
+
+        async function getDataArtist(artist) {
+            $artistas.innerHTML = '';
+            try {
+                let respuesta = await fetch(`https://www.theaudiodb.com/api/v1/json/2/search.php?s=${artist}`);
+                let json = await respuesta.json();
+    
+                if (!respuesta.ok || json.artists === null) {
+                    throw {status : respuesta.status, statusText : `No se encontro ningun resultado de : ${artist}`}
+                }
+
+                $template_artistas.querySelector('h3').textContent = `${json.artists[0].strArtist}`;
+                $template_artistas.querySelector('img').src = `${json.artists[0].strArtistThumb}`;
+                $template_artistas.querySelector('p.anio').textContent = `${json.artists[0].intBornYear} - ${json.artists[0].intDiedYear ? json.artists[0].intDiedYear : "Present"}`;
+                $template_artistas.querySelector('p.pais').textContent = `${json.artists[0].strCountry}`;
+                $template_artistas.querySelector('p.genero').textContent = `${json.artists[0].strGenre}`;
+                $template_artistas.querySelector('a').href = `https://${json.artists[0].strWebsite ? json.artists[0].strWebsite : "#"}`;
+                $template_artistas.querySelector('a').target = `${json.artists[0].strWebsite ? "_blank" : "_self"}`;
+                $template_artistas.querySelector('a').textContent = `Sitio Web`;
+                $template_artistas.querySelector('p.descripcion').textContent = `${json.artists[0].strBiographyEN}`;
+                let $clone = document.importNode($template_artistas, true);
+                $fragment_artist.appendChild($clone);
+                $artistas.appendChild($fragment_artist);
+                
+            } catch (error) {
+                $artistas.innerHTML = `Error ${error.statusText}`;
+            }
+
+        }
+
+        async function getDataLyric(artist,song) {
+            $letra.innerHTML = ''
+            try {
+                let respuesta = await fetch(`https://api.lyrics.ovh/v1/${artist}/${song}`);
+                let json = await respuesta.json();
+    
+                if (!respuesta.ok) {
+                    throw {status : respuesta.status, statusText : `No se encontro ningun resultado de : ${artist} / ${song}`}
+                }
+                
+                let $p = document.createElement('p');
+                let $h3 = document.createElement('h3');
+                $h3.innerHTML = `${song}`;
+                $p.innerHTML = `${json.lyrics}`;
+
+                $fragment_lyrics.appendChild($h3);
+                $fragment_lyrics.appendChild($p);
+
+                $letra.appendChild($fragment_lyrics);
+
+                
+            } catch (error) {
+                $letra.innerHTML = `Error ${error.status} ${error.statusText}`;
+            }
+        }
+    </script>
+</body>
+</html>
