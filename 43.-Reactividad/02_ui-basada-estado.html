@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Basada en el Estado</title>
+</head>
+<body>
+    <h1>UI Basada en el Estado</h1>
+    <form id="todo-form">
+        <input type="text" name="todo-input" id="todo-input" placeholder="Tarea por hacer">
+        <input type="submit" value="Agregar">
+    </form>
+    <h2>Lista de tareas</h2>
+    <ul id="todo-list"></ul>
+
+    <script>
+        
+        const state = {
+            todoList : []
+        }
+
+        const template = () =>{
+            if (state.todoList.length < 1) {
+                return `<p><b>Lista sin tareas por hacer</b></p>`;
+            }
+
+            let todos = state.todoList.map(input => `<li>${input}</li>`).join('');
+
+            return todos;
+        }
+
+        const render = () =>{
+            console.log(state);
+            const $list = document.getElementById('todo-list');
+            if (!$list) { return; }
+            $list.innerHTML = template();
+        }
+
+        document.addEventListener('DOMContentLoaded',(evt)=>{
+            render();
+        });
+
+        document.addEventListener('submit',(evt)=>{
+            if (!(evt.target.matches('#todo-form'))) { return false; }
+
+            evt.preventDefault();
+
+            const $input = document.getElementById('todo-input');
+
+            if (!$input) {return;}
+            state.todoList.push($input.value);
+            render();
+
+            $input.value = '';
+            $input.focus();
+        })
+    </script>
+</body>
+</html>
